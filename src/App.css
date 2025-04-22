@@ -107,3 +107,67 @@ html {
     transform: rotate(360deg);
   }
 }
+
+/* Enhanced Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+  .section {
+    padding: 3rem 1rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  body {
+    font-size: 0.95rem;
+  }
+}
+
+/* Additional responsive utilities */
+.hide-on-mobile {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .hide-on-mobile {
+    display: none;
+  }
+}
+
+.show-on-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .show-on-mobile {
+    display: block;
+  }
+}
+
+/* Ensure proper touch targets for mobile */
+@media screen and (max-width: 768px) {
+  button, 
+  .btn,
+  a.btn,
+  input[type="button"],
+  input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}

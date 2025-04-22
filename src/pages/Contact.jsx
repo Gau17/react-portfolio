@@ -5,6 +5,10 @@ import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 const ContactContainer = styled.div`
   padding: 5rem 2rem;
   background: #f9f9f9;
+  
+  @media screen and (max-width: 768px) {
+    padding: 3rem 1rem;
+  }
 `;
 
 const ContactTitle = styled.h2`
@@ -12,6 +16,11 @@ const ContactTitle = styled.h2`
   text-align: center;
   margin-bottom: 3rem;
   color: #1a1a1a;
+  
+  @media screen and (max-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const ContactWrapper = styled.div`
@@ -23,6 +32,7 @@ const ContactWrapper = styled.div`
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
+    grid-gap: 2rem;
   }
 `;
 
@@ -37,6 +47,11 @@ const FormInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
+  
+  @media screen and (max-width: 480px) {
+    padding: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
 `;
 
 const FormTextarea = styled.textarea`
@@ -47,6 +62,12 @@ const FormTextarea = styled.textarea`
   font-size: 1rem;
   min-height: 150px;
   resize: vertical;
+  
+  @media screen and (max-width: 480px) {
+    padding: 0.8rem;
+    min-height: 120px;
+    margin-bottom: 1.2rem;
+  }
 `;
 
 const SubmitButton = styled.button`
@@ -65,11 +86,23 @@ const SubmitButton = styled.button`
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
+  
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+  
+  @media screen and (max-width: 480px) {
+    padding: 0.8rem;
+  }
 `;
 
 const ContactInfo = styled.div`
   display: flex;
   flex-direction: column;
+  
+  @media screen and (max-width: 768px) {
+    order: -1;
+  }
 `;
 
 const ContactText = styled.p`
@@ -77,6 +110,11 @@ const ContactText = styled.p`
   line-height: 1.8;
   margin-bottom: 2rem;
   color: #333;
+  
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const ContactDetailsWrapper = styled.div`
@@ -87,6 +125,10 @@ const ContactDetail = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 1.5rem;
+  
+  @media screen and (max-width: 480px) {
+    margin-bottom: 1.2rem;
+  }
 `;
 
 const ContactIcon = styled.span`

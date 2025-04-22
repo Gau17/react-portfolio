@@ -5,6 +5,10 @@ import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 const ProjectsContainer = styled.div`
   padding: 5rem 2rem;
   background: #fff;
+  
+  @media screen and (max-width: 768px) {
+    padding: 3rem 1rem;
+  }
 `;
 
 const ProjectsTitle = styled.h2`
@@ -12,6 +16,11 @@ const ProjectsTitle = styled.h2`
   text-align: center;
   margin-bottom: 3rem;
   color: #1a1a1a;
+  
+  @media screen and (max-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const ProjectsWrapper = styled.div`
@@ -21,7 +30,12 @@ const ProjectsWrapper = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-gap: 2rem;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-gap: 1.5rem;
+  }
+  
+  @media screen and (max-width: 480px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -32,9 +46,18 @@ const ProjectCard = styled.div`
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     transform: translateY(-10px);
+  }
+  
+  @media screen and (max-width: 768px) {
+    &:hover {
+      transform: translateY(-5px);
+    }
   }
 `;
 
@@ -44,16 +67,38 @@ const ProjectImage = styled.div`
   background-image: ${({ bg }) => (bg ? `url(${bg})` : 'none')};
   background-size: cover;
   background-position: center;
+  
+  @media screen and (max-width: 768px) {
+    height: 180px;
+  }
 `;
 
 const ProjectInfo = styled.div`
   padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  
+  @media screen and (max-width: 480px) {
+    padding: 1.2rem;
+  }
 `;
 
 const ProjectTitle = styled.h3`
   font-size: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   color: #1a1a1a;
+  
+  @media screen and (max-width: 768px) {
+    font-size: 1.3rem;
+  }
+`;
+
+const ProjectDate = styled.p`
+  font-size: 0.9rem;
+  color: #777;
+  font-style: italic;
+  margin-bottom: 0.75rem;
 `;
 
 const ProjectDescription = styled.p`
@@ -61,12 +106,22 @@ const ProjectDescription = styled.p`
   color: #555;
   line-height: 1.6;
   margin-bottom: 1.5rem;
+  flex: 1;
+  
+  @media screen and (max-width: 768px) {
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+  }
 `;
 
 const ProjectTech = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 1.5rem;
+  
+  @media screen and (max-width: 480px) {
+    margin-bottom: 1.2rem;
+  }
 `;
 
 const TechTag = styled.span`
@@ -77,10 +132,20 @@ const TechTag = styled.span`
   font-size: 0.8rem;
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
+  
+  @media screen and (max-width: 480px) {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+  }
 `;
 
 const ProjectLinks = styled.div`
   display: flex;
+  
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
 `;
 
 const ProjectLink = styled.a`
@@ -95,18 +160,15 @@ const ProjectLink = styled.a`
   &:hover {
     color: #15cdfc;
   }
+  
+  @media screen and (max-width: 480px) {
+    margin-right: 0;
+  }
 `;
 
 const LinkIcon = styled.span`
   margin-right: 0.5rem;
   font-size: 1.1rem;
-`;
-
-const ProjectDate = styled.p`
-  font-size: 0.9rem;
-  color: #777;
-  font-style: italic;
-  margin-bottom: 0.75rem;
 `;
 
 const Projects = () => {

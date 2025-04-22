@@ -5,6 +5,14 @@ import { FaCode, FaLaptopCode, FaServer, FaMicrochip, FaRobot, FaFileAlt } from 
 const AboutContainer = styled.div`
   padding: 5rem 2rem;
   background: #f9f9f9;
+  
+  @media screen and (max-width: 768px) {
+    padding: 3rem 1.5rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    padding: 2.5rem 1rem;
+  }
 `;
 
 const AboutTitle = styled.h2`
@@ -12,6 +20,16 @@ const AboutTitle = styled.h2`
   text-align: center;
   margin-bottom: 3rem;
   color: #1a1a1a;
+  
+  @media screen and (max-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const AboutContent = styled.div`
@@ -23,6 +41,7 @@ const AboutContent = styled.div`
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
+    grid-gap: 2rem;
   }
 `;
 
@@ -33,6 +52,12 @@ const AboutParagraph = styled.p`
   line-height: 1.8;
   margin-bottom: 1.5rem;
   color: #333;
+  
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+  }
 `;
 
 const SkillsSection = styled.div``;
@@ -41,6 +66,11 @@ const SkillsTitle = styled.h3`
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
   color: #1a1a1a;
+  
+  @media screen and (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
 `;
 
 const SkillsList = styled.div`
@@ -50,6 +80,7 @@ const SkillsList = styled.div`
 
   @media screen and (max-width: 480px) {
     grid-template-columns: 1fr;
+    grid-gap: 0.8rem;
   }
 `;
 
@@ -57,35 +88,74 @@ const SkillItem = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
+  
+  @media screen and (max-width: 480px) {
+    margin-bottom: 0.8rem;
+  }
 `;
 
 const SkillIcon = styled.div`
   font-size: 1.5rem;
   margin-right: 1rem;
   color: #15cdfc;
+  
+  @media screen and (max-width: 480px) {
+    font-size: 1.3rem;
+    margin-right: 0.8rem;
+  }
 `;
 
 const SkillName = styled.p`
   font-size: 1.1rem;
   color: #333;
+  
+  @media screen and (max-width: 480px) {
+    font-size: 1rem;
+  }
 `;
 
 const SectionContainer = styled.div`
   margin-top: 4rem;
   max-width: 1200px;
   margin: 4rem auto 0;
+  
+  @media screen and (max-width: 768px) {
+    margin-top: 3rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    margin-top: 2.5rem;
+  }
 `;
 
 const SectionTitle = styled.h3`
   font-size: 2rem;
   margin-bottom: 2rem;
   color: #1a1a1a;
+  
+  @media screen and (max-width: 768px) {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
 `;
 
 const ExperienceContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  
+  @media screen and (max-width: 768px) {
+    gap: 1.5rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    gap: 1.2rem;
+  }
 `;
 
 const ExperienceItem = styled.div`
@@ -93,32 +163,68 @@ const ExperienceItem = styled.div`
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  
+  @media screen and (max-width: 768px) {
+    padding: 1.5rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    padding: 1.2rem;
+  }
 `;
 
 const ExperienceHeader = styled.div`
   margin-bottom: 1.5rem;
+  
+  @media screen and (max-width: 480px) {
+    margin-bottom: 1rem;
+  }
 `;
 
 const ExperienceTitle = styled.h4`
   font-size: 1.5rem;
   color: #1a1a1a;
   margin-bottom: 0.5rem;
+  
+  @media screen and (max-width: 768px) {
+    font-size: 1.3rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const ExperienceCompany = styled.h5`
   font-size: 1.2rem;
   color: #15cdfc;
   margin-bottom: 0.5rem;
+  
+  @media screen and (max-width: 768px) {
+    font-size: 1.1rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    font-size: 1rem;
+  }
 `;
 
 const ExperienceDate = styled.p`
   font-size: 1rem;
   color: #555;
   font-style: italic;
+  
+  @media screen and (max-width: 480px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const ExperienceDescription = styled.ul`
   padding-left: 1.5rem;
+  
+  @media screen and (max-width: 480px) {
+    padding-left: 1.2rem;
+  }
 `;
 
 const ExperiencePoint = styled.li`
@@ -126,12 +232,26 @@ const ExperiencePoint = styled.li`
   color: #333;
   margin-bottom: 0.75rem;
   line-height: 1.6;
+  
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
 `;
 
 const EducationContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  
+  @media screen and (max-width: 768px) {
+    gap: 1.5rem;
+  }
 `;
 
 const EducationItem = styled.div`
@@ -139,22 +259,46 @@ const EducationItem = styled.div`
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  
+  @media screen and (max-width: 768px) {
+    padding: 1.5rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    padding: 1.2rem;
+  }
 `;
 
 const EducationHeader = styled.div`
   margin-bottom: 1.5rem;
+  
+  @media screen and (max-width: 480px) {
+    margin-bottom: 1rem;
+  }
 `;
 
 const EducationDegree = styled.h4`
   font-size: 1.5rem;
   color: #1a1a1a;
   margin-bottom: 0.5rem;
+  
+  @media screen and (max-width: 768px) {
+    font-size: 1.3rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const EducationInstitution = styled.h5`
   font-size: 1.2rem;
   color: #15cdfc;
   margin-bottom: 0.5rem;
+  
+  @media screen and (max-width: 768px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const EducationDate = styled.p`
@@ -162,34 +306,60 @@ const EducationDate = styled.p`
   color: #555;
   font-style: italic;
   margin-bottom: 0.5rem;
+  
+  @media screen and (max-width: 480px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const EducationGrade = styled.p`
   font-size: 1rem;
   color: #555;
   margin-bottom: 0.5rem;
+  
+  @media screen and (max-width: 480px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const EducationActivities = styled.p`
   font-size: 1rem;
   color: #555;
   margin-bottom: 1rem;
+  
+  @media screen and (max-width: 480px) {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
 `;
 
 const CourseworkTitle = styled.h6`
   font-size: 1.1rem;
   color: #1a1a1a;
   margin-bottom: 0.5rem;
+  
+  @media screen and (max-width: 480px) {
+    font-size: 1rem;
+  }
 `;
 
 const CourseList = styled.ul`
   padding-left: 1.5rem;
+  
+  @media screen and (max-width: 480px) {
+    padding-left: 1.2rem;
+  }
 `;
 
 const CourseItem = styled.li`
   font-size: 1rem;
   color: #333;
   margin-bottom: 0.5rem;
+  
+  @media screen and (max-width: 480px) {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+  }
 `;
 
 const ResumeSection = styled.div`
@@ -201,12 +371,32 @@ const ResumeSection = styled.div`
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
+  
+  @media screen and (max-width: 768px) {
+    padding: 2rem;
+    margin-top: 3rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    padding: 1.5rem;
+    margin-top: 2.5rem;
+  }
 `;
 
 const ResumeTitle = styled.h3`
   font-size: 2rem;
   margin-bottom: 2rem;
   color: #1a1a1a;
+  
+  @media screen and (max-width: 768px) {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
 `;
 
 const ResumeDescription = styled.p`
@@ -217,6 +407,50 @@ const ResumeDescription = styled.p`
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+`;
+
+const KeySkills = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+  gap: 1rem;
+  
+  @media screen and (max-width: 768px) {
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
+  }
+`;
+
+const SkillPill = styled.span`
+  background: #f0f0f0;
+  color: #333;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  
+  @media screen and (max-width: 768px) {
+    padding: 0.4rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    padding: 0.3rem 1rem;
+    font-size: 0.8rem;
+  }
 `;
 
 const DownloadButton = styled.a`
@@ -239,29 +473,27 @@ const DownloadButton = styled.a`
     box-shadow: 0 10px 20px rgba(21, 205, 252, 0.4);
     background: #0eb4e3;
   }
+  
+  @media screen and (max-width: 768px) {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    padding: 0.7rem 1.8rem;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 250px;
+  }
 `;
 
 const DownloadIcon = styled.span`
   margin-right: 10px;
   font-size: 1.5rem;
-`;
-
-const KeySkills = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 800px;
-  margin: 0 auto 2rem auto;
-  gap: 1rem;
-`;
-
-const SkillPill = styled.span`
-  background: #f0f0f0;
-  color: #333;
-  padding: 0.5rem 1.5rem;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 500;
+  
+  @media screen and (max-width: 480px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const About = () => {
