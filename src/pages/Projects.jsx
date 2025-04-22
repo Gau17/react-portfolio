@@ -102,44 +102,105 @@ const LinkIcon = styled.span`
   font-size: 1.1rem;
 `;
 
+const ProjectDate = styled.p`
+  font-size: 0.9rem;
+  color: #777;
+  font-style: italic;
+  margin-bottom: 0.75rem;
+`;
+
 const Projects = () => {
-  // Example project data - Replace with your own projects
+  // Project data based on Gautam's specific projects
   const projects = [
     {
       id: 1,
-      title: 'E-Commerce Website',
-      description: 'A fully responsive e-commerce platform built with React and Node.js.',
-      tech: ['React', 'Node.js', 'Express', 'MongoDB'],
+      title: 'Embedded Linux Device Driver Development',
+      date: 'Jan 2025 - April 2025',
+      description: 'Developed Linux device drivers for sysfs, proc, and ioctl to manipulate RPi 4 GPIO ports using memory mapped IO and bit manipulation for PWM control.',
+      tech: ['Linux Device Drivers', 'Yocto', 'Rust', 'GPIO', 'Raspberry Pi'],
       github: 'https://github.com',
-      demo: 'https://example.com',
-      image: '',  // Add your project image path here
+      demo: '#',
+      image: '',
     },
     {
       id: 2,
-      title: 'Task Management App',
-      description: 'A task management application with drag and drop functionality.',
-      tech: ['React', 'Redux', 'Firebase'],
+      title: 'MITRE E-CTF 2025 (Team NEU1)',
+      date: 'Jan 2025 - April 2025',
+      description: 'Designed a secure Satellite Communication System based on MAX78000 (Arm Cortex-M4) MCU. Implemented end-to-end encryption using ChaCha20Poly1305 for AEAD. Ranked top 20 out of 120+ teams.',
+      tech: ['Embedded Security', 'ChaCha20Poly1305', 'SHA512 HKDF', 'MAX78000', 'Hardware Security'],
       github: 'https://github.com',
-      demo: 'https://example.com',
-      image: '',  // Add your project image path here
+      demo: '#',
+      image: '',
     },
     {
       id: 3,
-      title: 'Weather Dashboard',
-      description: 'A weather application that shows current and forecasted weather data.',
-      tech: ['JavaScript', 'CSS', 'Weather API'],
+      title: 'Matter-enabled Patient Monitoring System',
+      date: 'Sep 2024 - Oct 2024',
+      description: 'Winner - Silicon Labs Matter Developer Challenge; Featured in SiLabs WorksWith Conference. Redesigned Matter over Thread for critical-care environments with 40% lower energy consumption than WiFi.',
+      tech: ['IoT', 'Matter', 'Thread', 'Arduino Nano', 'SPI', 'I2C'],
       github: 'https://github.com',
-      demo: 'https://example.com',
-      image: '',  // Add your project image path here
+      demo: '#',
+      image: '',
     },
     {
       id: 4,
-      title: 'Portfolio Website',
-      description: 'A personal portfolio website showcasing my projects and skills.',
-      tech: ['React', 'Styled Components'],
+      title: 'Time Series Forecasting',
+      date: 'Jan 2024 - Feb 2024',
+      description: 'Forecasted energy consumption using PJM Energy Dataset and models such as Exponential Smoothing, Holt-Winters, AR, MA, ARMA, ARIMA, SARIMA and XGBoost.',
+      tech: ['Time Series', 'Forecasting', 'ARIMA', 'SARIMA', 'XGBoost', 'Python'],
       github: 'https://github.com',
-      demo: 'https://example.com',
-      image: '',  // Add your project image path here
+      demo: '#',
+      image: '',
+    },
+    {
+      id: 5,
+      title: 'IoT Smart Home Thermal Management System',
+      date: 'Jan 2024 - April 2024',
+      description: 'Designed an IoT control system using temperature, humidity, and pressure sensors with automated HVAC controls via MQTT. Applied ML algorithms for predictive maintenance to reduce downtime by 30%.',
+      tech: ['IoT', 'MQTT', 'Edge AI', 'Raspberry Pi', 'Redis'],
+      github: 'https://github.com',
+      demo: '#',
+      image: '',
+    },
+    {
+      id: 6,
+      title: 'Linux Based Intranet Design',
+      date: 'Nov 2023 - Dec 2023',
+      description: 'Configured DHCP, DNS (BIND9), Web server, and implemented IPSec VPN in tunnel mode between Linux machines. Created Network File System for file sharing between server and client.',
+      tech: ['Linux', 'DHCP', 'DNS', 'BIND9', 'IPSec VPN', 'Apache2'],
+      github: 'https://github.com',
+      demo: '#',
+      image: '',
+    },
+    {
+      id: 7,
+      title: 'Organizational Network Design',
+      date: 'Oct 2023 - Nov 2023',
+      description: 'Designed inter-connectivity for a 5-location organization, addressing bandwidth (EtherChannel), redundancy (STP, HSRP), and latency concerns using Cisco Packet Tracer.',
+      tech: ['Network Design', 'OSPF', 'EIGRP', 'VLANs', 'ACLs', 'Cisco'],
+      github: 'https://github.com',
+      demo: '#',
+      image: '',
+    },
+    {
+      id: 8,
+      title: 'Real Time Audio Synchronization',
+      date: 'Aug 2021 - Feb 2022',
+      description: 'Published in IEEE Xplore. Designed a system that can recognize a song by recording a small snippet of it and automatically synchronize lag-free playback with 86% detection accuracy.',
+      tech: ['Digital Signal Processing', 'FFT', 'DWT', 'Audio Fingerprinting', 'Synchronization'],
+      github: 'https://github.com',
+      demo: '#',
+      image: '',
+    },
+    {
+      id: 9,
+      title: 'Mask Module for Remote Health Monitoring',
+      date: 'May 2021 - June 2021',
+      description: 'Patent Application Published (No: 202221031954). Designed an ESP32 based multi-sensor smart module with BLE capability to track vital signs and reduce infection risk by up to 50%.',
+      tech: ['ESP32', 'BLE', 'Healthcare IoT', 'Android App', 'Remote Monitoring'],
+      github: 'https://github.com',
+      demo: '#',
+      image: '',
     },
   ];
 
@@ -152,6 +213,7 @@ const Projects = () => {
             <ProjectImage bg={project.image} />
             <ProjectInfo>
               <ProjectTitle>{project.title}</ProjectTitle>
+              <ProjectDate>{project.date}</ProjectDate>
               <ProjectDescription>{project.description}</ProjectDescription>
               <ProjectTech>
                 {project.tech.map((tech, index) => (
@@ -169,7 +231,7 @@ const Projects = () => {
                   <LinkIcon>
                     <FaExternalLinkAlt />
                   </LinkIcon>
-                  Live Demo
+                  Details
                 </ProjectLink>
               </ProjectLinks>
             </ProjectInfo>

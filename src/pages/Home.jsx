@@ -68,11 +68,11 @@ const Home = () => {
   return (
     <HomeContainer>
       <HeroContent>
-        <Title>Hi, I'm Your Name</Title>
-        <Subtitle>Frontend Developer | Designer | Creator</Subtitle>
+        <Title>Hi, I'm Gautam Bidari</Title>
+        <Subtitle>Embedded Systems Engineer | IoT Specialist | Developer</Subtitle>
         <HeroText>
-          I create modern and responsive websites with clean and efficient code.
-          Passionate about building user-friendly interfaces and delivering exceptional user experiences.
+          I specialize in Embedded Systems, IoT, Automation, Deep Learning and Robotics. 
+          Passionate about building innovative products and using technology to improve people's lives.
         </HeroText>
         <div>
           <CTAButton to="/projects">View My Work</CTAButton>

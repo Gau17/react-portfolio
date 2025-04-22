@@ -196,9 +196,9 @@ const Contact = () => {
 
         <ContactInfo>
           <ContactText>
-            I'm interested in freelance opportunities – especially ambitious or
-            large projects. However, if you have other request or question,
-            don't hesitate to use the form.
+            I'm interested in opportunities in embedded systems development, IoT applications, 
+            and innovative technology projects. Whether you have a specific project in mind or 
+            just want to connect, feel free to reach out!
           </ContactText>
           <ContactDetailsWrapper>
             <ContactDetail>
@@ -211,13 +211,13 @@ const Contact = () => {
               <ContactIcon>
                 <FaEnvelope />
               </ContactIcon>
-              <ContactInfoText>your.email@example.com</ContactInfoText>
+              <ContactInfoText>youremail@example.com</ContactInfoText>
             </ContactDetail>
             <ContactDetail>
               <ContactIcon>
                 <FaPhone />
               </ContactIcon>
-              <ContactInfoText>+1 (555) 123-4567</ContactInfoText>
+              <ContactInfoText>+1 (123) 456-7890</ContactInfoText>
             </ContactDetail>
           </ContactDetailsWrapper>
         </ContactInfo>

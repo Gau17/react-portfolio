@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaCode, FaPalette, FaLaptopCode } from 'react-icons/fa';
+import { FaCode, FaLaptopCode, FaServer, FaMicrochip, FaRobot } from 'react-icons/fa';
 
 const AboutContainer = styled.div`
   padding: 5rem 2rem;
@@ -70,57 +70,126 @@ const SkillName = styled.p`
   color: #333;
 `;
 
-const ServicesSection = styled.div`
+const SectionContainer = styled.div`
   margin-top: 4rem;
   max-width: 1200px;
   margin: 4rem auto 0;
 `;
 
-const ServicesTitle = styled.h3`
+const SectionTitle = styled.h3`
   font-size: 2rem;
-  text-align: center;
   margin-bottom: 2rem;
   color: #1a1a1a;
 `;
 
-const ServicesGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 2rem;
-
-  @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
+const ExperienceContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 `;
 
-const ServiceCard = styled.div`
+const ExperienceItem = styled.div`
   background: #fff;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: translateY(-10px);
-  }
 `;
 
-const ServiceIcon = styled.div`
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #15cdfc;
+const ExperienceHeader = styled.div`
+  margin-bottom: 1.5rem;
 `;
 
-const ServiceTitle = styled.h4`
+const ExperienceTitle = styled.h4`
   font-size: 1.5rem;
-  margin-bottom: 1rem;
   color: #1a1a1a;
+  margin-bottom: 0.5rem;
 `;
 
-const ServiceDescription = styled.p`
+const ExperienceCompany = styled.h5`
+  font-size: 1.2rem;
+  color: #15cdfc;
+  margin-bottom: 0.5rem;
+`;
+
+const ExperienceDate = styled.p`
   font-size: 1rem;
   color: #555;
+  font-style: italic;
+`;
+
+const ExperienceDescription = styled.ul`
+  padding-left: 1.5rem;
+`;
+
+const ExperiencePoint = styled.li`
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 0.75rem;
   line-height: 1.6;
+`;
+
+const EducationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
+
+const EducationItem = styled.div`
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+`;
+
+const EducationHeader = styled.div`
+  margin-bottom: 1.5rem;
+`;
+
+const EducationDegree = styled.h4`
+  font-size: 1.5rem;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+`;
+
+const EducationInstitution = styled.h5`
+  font-size: 1.2rem;
+  color: #15cdfc;
+  margin-bottom: 0.5rem;
+`;
+
+const EducationDate = styled.p`
+  font-size: 1rem;
+  color: #555;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+`;
+
+const EducationGrade = styled.p`
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+`;
+
+const EducationActivities = styled.p`
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+`;
+
+const CourseworkTitle = styled.h6`
+  font-size: 1.1rem;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+`;
+
+const CourseList = styled.ul`
+  padding-left: 1.5rem;
+`;
+
+const CourseItem = styled.li`
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
 `;
 
 const About = () => {
@@ -130,104 +199,163 @@ const About = () => {
       <AboutContent>
         <AboutText>
           <AboutParagraph>
-            Hello! I'm [Your Name], a passionate web developer specializing in 
-            creating beautiful and functional websites. With a strong background 
-            in front-end development, I love turning ideas into reality through code.
+            Hello! I'm Gautam Bidari, an Embedded Systems Engineer and IoT Specialist with a passion 
+            for building innovative technology solutions. I specialize in developing embedded systems, 
+            IoT applications, and implementing automation solutions.
           </AboutParagraph>
           <AboutParagraph>
-            I graduated with a degree in Computer Science from [University Name] 
-            and have [X] years of experience working with various web technologies. 
-            My approach combines technical expertise with creative problem-solving 
-            to deliver outstanding results.
+            My primary areas of interest include Embedded Systems, IoT, Automation, Deep Learning, and Robotics. 
+            I'm passionate about using technology to develop products that improve people's lives and solve 
+            real-world challenges.
           </AboutParagraph>
           <AboutParagraph>
-            When I'm not coding, you can find me exploring new technologies, 
-            contributing to open-source projects, or enjoying outdoor activities 
-            like hiking and photography.
+            Currently pursuing my Master's degree in Cyber-Physical Systems at Northeastern University, 
+            I'm enhancing my technical skills while gaining hands-on experience through internships 
+            and academic projects. Outside of work, I'm an avid quizzer and enjoy music, reading, and 
+            maintaining an active fitness routine.
           </AboutParagraph>
         </AboutText>
         
         <SkillsSection>
-          <SkillsTitle>My Skills</SkillsTitle>
+          <SkillsTitle>Technical Skills</SkillsTitle>
           <SkillsList>
             <SkillItem>
               <SkillIcon>
-                <FaCode />
+                <FaMicrochip />
               </SkillIcon>
-              <SkillName>JavaScript (ES6+)</SkillName>
+              <SkillName>nRF52840, ESP32, Arduino</SkillName>
             </SkillItem>
             <SkillItem>
               <SkillIcon>
                 <FaCode />
               </SkillIcon>
-              <SkillName>React.js</SkillName>
+              <SkillName>C/C++, Rust, Python</SkillName>
             </SkillItem>
             <SkillItem>
               <SkillIcon>
-                <FaCode />
+                <FaLaptopCode />
               </SkillIcon>
-              <SkillName>HTML5 & CSS3</SkillName>
+              <SkillName>SPI, I2C, JTAG, BLE, RTOS</SkillName>
             </SkillItem>
             <SkillItem>
               <SkillIcon>
-                <FaCode />
+                <FaServer />
               </SkillIcon>
-              <SkillName>Node.js</SkillName>
+              <SkillName>Java, SQL, Docker</SkillName>
             </SkillItem>
             <SkillItem>
               <SkillIcon>
-                <FaCode />
+                <FaRobot />
               </SkillIcon>
-              <SkillName>Responsive Design</SkillName>
+              <SkillName>TensorFlow, OpenCV</SkillName>
             </SkillItem>
             <SkillItem>
               <SkillIcon>
-                <FaCode />
+                <FaServer />
               </SkillIcon>
-              <SkillName>Git & GitHub</SkillName>
+              <SkillName>Cloud Computing (GCP)</SkillName>
             </SkillItem>
           </SkillsList>
         </SkillsSection>
       </AboutContent>
 
-      <ServicesSection>
-        <ServicesTitle>What I Do</ServicesTitle>
-        <ServicesGrid>
-          <ServiceCard>
-            <ServiceIcon>
-              <FaLaptopCode />
-            </ServiceIcon>
-            <ServiceTitle>Web Development</ServiceTitle>
-            <ServiceDescription>
-              I build responsive websites that provide a seamless experience across 
-              all devices. Using modern frameworks and best practices to ensure 
-              optimal performance.
-            </ServiceDescription>
-          </ServiceCard>
+      <SectionContainer>
+        <SectionTitle>Education</SectionTitle>
+        <EducationContainer>
+          <EducationItem>
+            <EducationHeader>
+              <EducationDegree>Master of Science - MS, Cyber-Physical Systems</EducationDegree>
+              <EducationInstitution>Northeastern University</EducationInstitution>
+              <EducationDate>September 2023 - August 2025</EducationDate>
+              <EducationGrade>Grade: 4.0</EducationGrade>
+              <EducationActivities>Activities: President - IoT Connect Club (Spring 2025)</EducationActivities>
+            </EducationHeader>
+            <CourseworkTitle>Relevant Coursework:</CourseworkTitle>
+            <CourseList>
+              <CourseItem>Fundamentals of Internet of Things (TELE 6510)</CourseItem>
+              <CourseItem>Data Networking (TELE 5330)</CourseItem>
+              <CourseItem>Data Networking Lab (TELE 5331)</CourseItem>
+              <CourseItem>Connected Devices (TELE 6530)</CourseItem>
+              <CourseItem>ML for IoT (TELE 6500)</CourseItem>
+              <CourseItem>Software Security and Vulnerability (CY5770)</CourseItem>
+              <CourseItem>Computer Hardware Security (EECE 7390)</CourseItem>
+              <CourseItem>Embedded Device Drivers and Rust (TELE 7374)</CourseItem>
+            </CourseList>
+          </EducationItem>
+        </EducationContainer>
+      </SectionContainer>
 
-          <ServiceCard>
-            <ServiceIcon>
-              <FaPalette />
-            </ServiceIcon>
-            <ServiceTitle>UI/UX Design</ServiceTitle>
-            <ServiceDescription>
-              Creating beautiful, intuitive interfaces that enhance user experience. 
-              I focus on clean design that supports functionality and engages users.
-            </ServiceDescription>
-          </ServiceCard>
+      <SectionContainer>
+        <SectionTitle>Work Experience</SectionTitle>
+        <ExperienceContainer>
+          <ExperienceItem>
+            <ExperienceHeader>
+              <ExperienceTitle>Teaching Assistant - ML for IoT Systems (TELE 6500)</ExperienceTitle>
+              <ExperienceCompany>Northeastern University, Boston, MA</ExperienceCompany>
+              <ExperienceDate>January 2025 - April 2025</ExperienceDate>
+            </ExperienceHeader>
+            <ExperienceDescription>
+              <ExperiencePoint>Responsible for designing and grading assignments and projects</ExperiencePoint>
+              <ExperiencePoint>Conducted weekly lab sessions using Python and frameworks like SKTime and SKForecast</ExperiencePoint>
+            </ExperienceDescription>
+          </ExperienceItem>
 
-          <ServiceCard>
-            <ServiceIcon>
-              <FaCode />
-            </ServiceIcon>
-            <ServiceTitle>Frontend Development</ServiceTitle>
-            <ServiceDescription>
-              Transforming designs into functional interfaces with clean, efficient code. 
-              I specialize in React and modern JavaScript to build interactive web applications.
-            </ServiceDescription>
-          </ServiceCard>
-        </ServicesGrid>
-      </ServicesSection>
+          <ExperienceItem>
+            <ExperienceHeader>
+              <ExperienceTitle>Embedded Software Engineering Intern</ExperienceTitle>
+              <ExperienceCompany>Woods Hole Oceanographic Institute (WHOI), Woods Hole, MA</ExperienceCompany>
+              <ExperienceDate>June 2024 - December 2024</ExperienceDate>
+            </ExperienceHeader>
+            <ExperienceDescription>
+              <ExperiencePoint>Designed, built and field-tested a low-cost, high-precision optical pH sensor having 3rd decimal place precision and sampling rate 2x other devices</ExperiencePoint>
+              <ExperiencePoint>Designed, manufactured and assembled prototype PCBs using KiCad and JLCPCB</ExperiencePoint>
+              <ExperiencePoint>Wrote embedded C firmware libraries for nRF52840 MCU (ARM Cortex-M4) following a test driven development framework and MISRA C 2012 guidelines</ExperiencePoint>
+              <ExperiencePoint>Developed an interactive python-based GUI to control sensor components via BLE or Serial interface and plot sensor data in real-time</ExperiencePoint>
+              <ExperiencePoint>Wrote comprehensive unit and component tests using Unity framework</ExperiencePoint>
+              <ExperiencePoint>Documented UML and system state diagrams and used event driven architecture principles and design patterns</ExperiencePoint>
+              <ExperiencePoint>Interfaced sensor with Bristlemouth Dev Kit and Sofar Spotter for cellular/satellite connectivity</ExperiencePoint>
+              <ExperiencePoint>Collaborated with Lowell Instruments LLC to interface sensor with their commercial Deck Data Hub using BLE, enhancing deployment capabilities</ExperiencePoint>
+            </ExperienceDescription>
+          </ExperienceItem>
+
+          <ExperienceItem>
+            <ExperienceHeader>
+              <ExperienceTitle>Teaching Assistant - Data Networking (TELE 5330)</ExperienceTitle>
+              <ExperienceCompany>Northeastern University, Boston, MA</ExperienceCompany>
+              <ExperienceDate>January 2024 - April 2024</ExperienceDate>
+            </ExperienceHeader>
+            <ExperienceDescription>
+              <ExperiencePoint>Responsible for designing and grading assignments, projects, and viva evaluations</ExperiencePoint>
+              <ExperiencePoint>Conducted weekly Networking Lab sessions using Cisco Packet Tracer and Ubuntu Linux</ExperiencePoint>
+            </ExperienceDescription>
+          </ExperienceItem>
+
+          <ExperienceItem>
+            <ExperienceHeader>
+              <ExperienceTitle>Java Backend Developer</ExperienceTitle>
+              <ExperienceCompany>Deloitte Consulting, India</ExperienceCompany>
+              <ExperienceDate>June 2022 - August 2023</ExperienceDate>
+            </ExperienceHeader>
+            <ExperienceDescription>
+              <ExperiencePoint>Awarded Deloitte Applause Award for end-to-end implementation of core modules supporting 5+ business use cases (0 critical post-deployment defects)</ExperiencePoint>
+              <ExperiencePoint>Built 20+ REST endpoints using Spring Boot Microservices with 99.9% uptime SLA. Containerized deployment using Docker and Google Kubernetes Engine (GKE)</ExperiencePoint>
+              <ExperiencePoint>Utilized Git, Jenkins and Jira for CI/CD flows across Dev/QA/Prod and Project Management in an Agile Framework</ExperiencePoint>
+            </ExperienceDescription>
+          </ExperienceItem>
+
+          <ExperienceItem>
+            <ExperienceHeader>
+              <ExperienceTitle>Embedded Software Engineering Intern</ExperienceTitle>
+              <ExperienceCompany>Millennium Semiconductors, India</ExperienceCompany>
+              <ExperienceDate>June 2021 - August 2021</ExperienceDate>
+            </ExperienceHeader>
+            <ExperienceDescription>
+              <ExperiencePoint>Successfully prototyped a wearable, low-cost, bluetooth-enabled patient monitoring system</ExperiencePoint>
+              <ExperiencePoint>Bare metal development on nRF52840 MCU using Segger Embedded System IDE w/ JTAG debugger and protocols like SPI, I2C, BLE</ExperiencePoint>
+            </ExperienceDescription>
+          </ExperienceItem>
+        </ExperienceContainer>
+      </SectionContainer>
     </AboutContainer>
   );
 };
