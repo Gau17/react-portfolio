@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaCode, FaLaptopCode, FaServer, FaMicrochip, FaRobot, FaBriefcase, FaGraduationCap } from 'react-icons/fa';
+import { FaCode, FaLaptopCode, FaServer, FaMicrochip, FaRobot, FaBriefcase, FaGraduationCap, FaFileDownload, FaEye } from 'react-icons/fa';
 
 const AboutContainer = styled.div`
   padding: calc(1.618rem * 3) calc(1.618rem * 1.2);
@@ -76,19 +76,6 @@ const ProfileImageContainer = styled.div`
     -webkit-mask-composite: xor;
     mask-composite: exclude;
   }
-`;
-
-const ProfileImagePlaceholder = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: #1e1e1e;
-  color: #a0a0a0;
-  font-size: 1rem;
-  text-align: center;
-  padding: 2rem;
 `;
 
 const AboutText = styled.div``;
@@ -311,6 +298,100 @@ const TimelinePoint = styled.li`
   line-height: 1.5;
 `;
 
+const ResumeSection = styled.div`
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+  padding: 2rem;
+  background: rgba(30, 30, 30, 0.7);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #15cdfc, #5f65f9);
+  }
+`;
+
+const ResumeContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+`;
+
+const ResumeTitle = styled.h3`
+  font-size: calc(1.618rem * 1.2);
+  margin-bottom: 1.2rem;
+  color: #ffffff;
+  position: relative;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 2px;
+    background: linear-gradient(90deg, #15cdfc, #5f65f9);
+    border-radius: 2px;
+  }
+`;
+
+const ResumeText = styled.p`
+  font-size: 1.1rem;
+  line-height: 1.618;
+  margin-bottom: 2rem;
+  color: #e0e0e0;
+  max-width: 800px;
+`;
+
+const ResumeButtons = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  
+  @media (max-width: 576px) {
+    flex-direction: column;
+  }
+`;
+
+const ResumeButton = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.5rem;
+  background: ${props => props.primary ? 'linear-gradient(135deg, #15cdfc, #5f65f9)' : 'rgba(30, 30, 30, 0.9)'};
+  color: ${props => props.primary ? '#ffffff' : '#15cdfc'};
+  border: ${props => props.primary ? 'none' : '1px solid #15cdfc'};
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  min-width: 180px;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: ${props => props.primary ? 'linear-gradient(135deg, #0eb4e3, #4e4bd0)' : 'rgba(21, 205, 252, 0.1)'};
+  }
+  
+  svg {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+  }
+`;
+
 const About = () => {
   const experiences = [
     {
@@ -404,9 +485,15 @@ const About = () => {
       
       <ProfileSection>
         <ProfileImageContainer>
-          <ProfileImagePlaceholder>
-            Upload a profile image at '/public/profile.jpg'
-          </ProfileImagePlaceholder>
+          <img 
+            src="/profile.JPG" 
+            alt="Gautam Bidari" 
+            style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'relative', zIndex: 0 }}
+            onError={(e) => {
+              e.target.style.display = 'none';
+              e.target.parentElement.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; color: #a0a0a0; font-size: 1rem; text-align: center; padding: 2rem; position: relative; z-index: 0;">Upload a profile image at \'/public/profile.JPG\'</div>';
+            }}
+          />
         </ProfileImageContainer>
         
         <AboutText>
@@ -428,6 +515,24 @@ const About = () => {
           </AboutParagraph>
         </AboutText>
       </ProfileSection>
+      
+      <ResumeSection>
+        <ResumeContent>
+          <ResumeTitle>My Resume</ResumeTitle>
+          <ResumeText>
+            Want to know more about my professional background? 
+            Download my resume to see detailed information about my education, work experience, skills, and achievements.
+          </ResumeText>
+          <ResumeButtons>
+            <ResumeButton primary href="/resume.pdf" download="Gautam_Bidari_Resume.pdf">
+              <FaFileDownload /> Download Resume
+            </ResumeButton>
+            <ResumeButton href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+              <FaEye /> View Resume
+            </ResumeButton>
+          </ResumeButtons>
+        </ResumeContent>
+      </ResumeSection>
       
       <SkillsSection>
         <SkillsTitle>Technical Skills</SkillsTitle>

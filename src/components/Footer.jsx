@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaYoutube, FaEnvelope } from 'react-icons/fa';
 
 const FooterContainer = styled.footer`
   background-color: var(--bg-color);
@@ -49,7 +49,7 @@ const SocialIconLink = styled.a`
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--primary-gradient);
+    background: ${props => props.gradient || 'linear-gradient(135deg, #15cdfc, #4e4bd0)'};
     opacity: 0;
     transition: var(--transition);
     z-index: -1;
@@ -78,7 +78,7 @@ const FooterText = styled.p`
 `;
 
 const FooterHighlight = styled.span`
-  background: var(--primary-gradient);
+  background: ${props => props.gradient || 'linear-gradient(135deg, #15cdfc, #4e4bd0)'};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 600;
@@ -88,21 +88,40 @@ const Footer = () => {
   return (
     <FooterContainer>
       <SocialIcons>
-        <SocialIconLink href="https://github.com" target="_blank" aria-label="GitHub">
+        <SocialIconLink 
+          href="https://github.com" 
+          target="_blank" 
+          aria-label="GitHub"
+          gradient="linear-gradient(135deg, #333, #6e5494)"
+        >
           <FaGithub />
         </SocialIconLink>
-        <SocialIconLink href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+        <SocialIconLink 
+          href="https://linkedin.com" 
+          target="_blank" 
+          aria-label="LinkedIn"
+          gradient="linear-gradient(135deg, #0077b5, #0a66c2)"
+        >
           <FaLinkedin />
         </SocialIconLink>
-        <SocialIconLink href="https://twitter.com" target="_blank" aria-label="Twitter">
-          <FaTwitter />
+        <SocialIconLink 
+          href="https://youtube.com" 
+          target="_blank" 
+          aria-label="YouTube"
+          gradient="linear-gradient(135deg, #FF0000, #CC0000)"
+        >
+          <FaYoutube />
         </SocialIconLink>
-        <SocialIconLink href="mailto:your.email@example.com" aria-label="Email">
+        <SocialIconLink 
+          href="mailto:your.email@example.com" 
+          aria-label="Email"
+          gradient="linear-gradient(135deg, #15cdfc, #4e4bd0)"
+        >
           <FaEnvelope />
         </SocialIconLink>
       </SocialIcons>
-      <FooterText>© {new Date().getFullYear()} Your Name. All rights reserved.</FooterText>
-      <FooterText>Built with <FooterHighlight>React</FooterHighlight></FooterText>
+      <FooterText>© {new Date().getFullYear()} Gautam Bidari. All rights reserved.</FooterText>
+      <FooterText>Built with <FooterHighlight gradient="linear-gradient(135deg, #61DBFB, #00BFFF)">React</FooterHighlight></FooterText>
     </FooterContainer>
   );
 };

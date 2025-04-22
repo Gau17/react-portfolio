@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes, FaFileAlt } from 'react-icons/fa';
 
 const Nav = styled.nav`
   background: #1a1a1a;
@@ -52,6 +52,25 @@ const NavLink = styled(Link)`
   }
 `;
 
+const ResumeLink = styled.a`
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+
+  &:hover {
+    color: #15cdfc;
+    transition: all 0.3s ease;
+  }
+  
+  svg {
+    margin-right: 0.3rem;
+  }
+`;
+
 const MobileIcon = styled.div`
   display: none;
 
@@ -94,6 +113,27 @@ const MobileLink = styled(Link)`
   }
 `;
 
+const MobileResumeLink = styled.a`
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: #15cdfc;
+    transition: all 0.3s ease;
+  }
+  
+  svg {
+    margin-right: 0.5rem;
+  }
+`;
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -111,6 +151,9 @@ const Navbar = () => {
           <NavLink to="/about">About</NavLink>
           <NavLink to="/projects">Projects</NavLink>
           <NavLink to="/contact">Contact</NavLink>
+          <ResumeLink href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+            <FaFileAlt /> Resume
+          </ResumeLink>
         </NavMenu>
       </Nav>
       <MobileMenu isOpen={isOpen}>
@@ -118,6 +161,9 @@ const Navbar = () => {
         <MobileLink to="/about" onClick={toggle}>About</MobileLink>
         <MobileLink to="/projects" onClick={toggle}>Projects</MobileLink>
         <MobileLink to="/contact" onClick={toggle}>Contact</MobileLink>
+        <MobileResumeLink href="/resume.pdf" target="_blank" rel="noopener noreferrer" onClick={toggle}>
+          <FaFileAlt /> Resume
+        </MobileResumeLink>
       </MobileMenu>
     </>
   );
