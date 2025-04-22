@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaCode, FaLaptopCode, FaServer, FaMicrochip, FaRobot } from 'react-icons/fa';
+import { FaCode, FaLaptopCode, FaServer, FaMicrochip, FaRobot, FaBriefcase, FaGraduationCap } from 'react-icons/fa';
 
 const AboutContainer = styled.div`
   padding: calc(1.618rem * 3) calc(1.618rem * 1.2);
@@ -11,7 +11,7 @@ const AboutContainer = styled.div`
 const AboutTitle = styled.h2`
   font-size: calc(1.618rem * 1.618);
   text-align: center;
-  margin-bottom: calc(1.618rem * 1.8);
+  margin-bottom: calc(1.618rem * 2.5);
   color: #ffffff;
   position: relative;
   display: inline-block;
@@ -30,16 +30,65 @@ const AboutTitle = styled.h2`
   }
 `;
 
-const AboutContent = styled.div`
+const ProfileSection = styled.div`
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 4rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: calc(1.618rem * 1.8);
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 3rem;
+  align-items: center;
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
   }
+`;
+
+const ProfileImageContainer = styled.div`
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  aspect-ratio: 1/1;
+  max-width: 350px;
+  margin: 0 auto;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, rgba(21, 205, 252, 0.3), rgba(95, 101, 249, 0.3));
+    z-index: 1;
+  }
+  
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 3px solid transparent;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #15cdfc, #5f65f9) border-box;
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) padding-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+`;
+
+const ProfileImagePlaceholder = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #1e1e1e;
+  color: #a0a0a0;
+  font-size: 1rem;
+  text-align: center;
+  padding: 2rem;
 `;
 
 const AboutText = styled.div``;
@@ -53,7 +102,10 @@ const AboutParagraph = styled.p`
   letter-spacing: 0.01rem;
 `;
 
-const SkillsSection = styled.div``;
+const SkillsSection = styled.div`
+  max-width: 1200px;
+  margin: 3rem auto;
+`;
 
 const SkillsTitle = styled.h3`
   font-size: calc(1.618rem * 1.1);
@@ -76,7 +128,7 @@ const SkillsTitle = styled.h3`
 
 const SkillsList = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-gap: 1.618rem;
 
   @media screen and (max-width: 480px) {
@@ -87,11 +139,17 @@ const SkillsList = styled.div`
 const SkillItem = styled.div`
   display: flex;
   align-items: center;
+  padding: 1rem;
+  border-radius: 8px;
+  background: rgba(30, 30, 30, 0.7);
+  backdrop-filter: blur(10px);
   margin-bottom: 1rem;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
   
   &:hover {
-    transform: translateX(5px);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: rgba(30, 30, 30, 0.9);
   }
 `;
 
@@ -100,7 +158,7 @@ const SkillIcon = styled.div`
   margin-right: 1rem;
   color: #15cdfc;
   background: rgba(21, 205, 252, 0.1);
-  padding: 0.5rem;
+  padding: 0.8rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -120,7 +178,7 @@ const SectionContainer = styled.div`
 
 const SectionTitle = styled.h3`
   font-size: calc(1.618rem * 1.2);
-  margin-bottom: calc(1.618rem * 1.2);
+  margin-bottom: calc(1.618rem * 1.8);
   color: #ffffff;
   position: relative;
   display: inline-block;
@@ -137,145 +195,220 @@ const SectionTitle = styled.h3`
   }
 `;
 
-const ExperienceContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: calc(1.618rem * 1.2);
-`;
-
-const ExperienceItem = styled.div`
-  background: #1e1e1e;
-  padding: 1.618rem;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+const Timeline = styled.div`
   position: relative;
-  overflow: hidden;
+  max-width: 1200px;
+  margin: 0 auto;
   
-  &:before {
+  &:after {
     content: '';
     position: absolute;
+    width: 6px;
+    background: linear-gradient(180deg, #15cdfc, #5f65f9);
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, #15cdfc, #5f65f9);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 6px;
+    opacity: 0.6;
+  }
+  
+  @media screen and (max-width: 768px) {
+    &:after {
+      left: 31px;
+    }
   }
 `;
 
-const ExperienceHeader = styled.div`
-  margin-bottom: 1.618rem;
+const TimelineItem = styled.div`
+  padding: 10px 40px;
+  position: relative;
+  width: 50%;
+  box-sizing: border-box;
+  left: ${(props) => (props.position === 'right' ? '50%' : '0')};
+  
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+    left: 0;
+  }
 `;
 
-const ExperienceTitle = styled.h4`
+const TimelineContent = styled.div`
+  padding: 20px 30px;
+  background: #1e1e1e;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  }
+`;
+
+const TimelineDot = styled.div`
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: ${(props) => (props.position === 'right' ? 'auto' : '-15px')};
+  left: ${(props) => (props.position === 'right' ? '-15px' : 'auto')};
+  top: 20px;
+  border-radius: 50%;
+  z-index: 2;
+  background: #121212;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  @media screen and (max-width: 768px) {
+    left: 16px;
+    right: auto;
+  }
+`;
+
+const TimelineIcon = styled.div`
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #15cdfc, #5f65f9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 0.8rem;
+`;
+
+const TimelineTitle = styled.h4`
   font-size: calc(1.618rem * 0.9);
   color: #ffffff;
   margin-bottom: 0.5rem;
 `;
 
-const ExperienceCompany = styled.h5`
+const TimelineCompany = styled.h5`
   font-size: 1.1rem;
   color: #15cdfc;
   margin-bottom: 0.5rem;
 `;
 
-const ExperienceDate = styled.p`
+const TimelineDate = styled.p`
   font-size: 0.9rem;
   color: #aaaaaa;
   font-style: italic;
-`;
-
-const ExperienceDescription = styled.ul`
-  padding-left: 1.618rem;
-`;
-
-const ExperiencePoint = styled.li`
-  font-size: 1rem;
-  color: #e0e0e0;
-  margin-bottom: 0.75rem;
-  line-height: 1.618;
-`;
-
-const EducationContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: calc(1.618rem * 1.2);
-`;
-
-const EducationItem = styled.div`
-  background: #1e1e1e;
-  padding: 1.618rem;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  position: relative;
-  overflow: hidden;
-  
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, #15cdfc, #5f65f9);
-  }
-`;
-
-const EducationHeader = styled.div`
-  margin-bottom: 1.618rem;
-`;
-
-const EducationDegree = styled.h4`
-  font-size: calc(1.618rem * 0.9);
-  color: #ffffff;
-  margin-bottom: 0.5rem;
-`;
-
-const EducationInstitution = styled.h5`
-  font-size: 1.1rem;
-  color: #15cdfc;
-  margin-bottom: 0.5rem;
-`;
-
-const EducationDate = styled.p`
-  font-size: 0.9rem;
-  color: #aaaaaa;
-  font-style: italic;
-  margin-bottom: 0.5rem;
-`;
-
-const EducationGrade = styled.p`
-  font-size: 0.9rem;
-  color: #aaaaaa;
-  margin-bottom: 0.5rem;
-`;
-
-const EducationActivities = styled.p`
-  font-size: 0.9rem;
-  color: #aaaaaa;
   margin-bottom: 1rem;
 `;
 
-const CourseworkTitle = styled.h6`
-  font-size: 1rem;
-  color: #ffffff;
-  margin-bottom: 0.5rem;
+const TimelineDescription = styled.ul`
+  padding-left: 1.2rem;
 `;
 
-const CourseList = styled.ul`
-  padding-left: 1.618rem;
-`;
-
-const CourseItem = styled.li`
-  font-size: 0.9rem;
+const TimelinePoint = styled.li`
+  font-size: 0.95rem;
   color: #e0e0e0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
 `;
 
 const About = () => {
+  const experiences = [
+    {
+      id: 1,
+      title: "Teaching Assistant - ML for IoT Systems (TELE 6500)",
+      company: "Northeastern University, Boston, MA",
+      date: "January 2025 - April 2025",
+      points: [
+        "Responsible for designing and grading assignments and projects",
+        "Conducted weekly lab sessions using Python and frameworks like SKTime and SKForecast"
+      ],
+      icon: <FaBriefcase />
+    },
+    {
+      id: 2,
+      title: "Embedded Software Engineering Intern",
+      company: "Woods Hole Oceanographic Institute (WHOI), Woods Hole, MA",
+      date: "June 2024 - December 2024",
+      points: [
+        "Designed, built and field-tested a low-cost, high-precision optical pH sensor having 3rd decimal place precision and sampling rate 2x other devices",
+        "Designed, manufactured and assembled prototype PCBs using KiCad and JLCPCB",
+        "Wrote embedded C firmware libraries for nRF52840 MCU (ARM Cortex-M4) following a test driven development framework and MISRA C 2012 guidelines",
+        "Developed an interactive python-based GUI to control sensor components via BLE or Serial interface and plot sensor data in real-time",
+        "Wrote comprehensive unit and component tests using Unity framework",
+        "Documented UML and system state diagrams and used event driven architecture principles and design patterns",
+        "Interfaced sensor with Bristlemouth Dev Kit and Sofar Spotter for cellular/satellite connectivity",
+        "Collaborated with Lowell Instruments LLC to interface sensor with their commercial Deck Data Hub using BLE, enhancing deployment capabilities"
+      ],
+      icon: <FaMicrochip />
+    },
+    {
+      id: 3,
+      title: "Teaching Assistant - Data Networking (TELE 5330)",
+      company: "Northeastern University, Boston, MA",
+      date: "January 2024 - April 2024",
+      points: [
+        "Responsible for designing and grading assignments, projects, and viva evaluations",
+        "Conducted weekly Networking Lab sessions using Cisco Packet Tracer and Ubuntu Linux"
+      ],
+      icon: <FaLaptopCode />
+    },
+    {
+      id: 4,
+      title: "Java Backend Developer",
+      company: "Deloitte Consulting, India",
+      date: "June 2022 - August 2023",
+      points: [
+        "Awarded Deloitte Applause Award for end-to-end implementation of core modules supporting 5+ business use cases (0 critical post-deployment defects)",
+        "Built 20+ REST endpoints using Spring Boot Microservices with 99.9% uptime SLA. Containerized deployment using Docker and Google Kubernetes Engine (GKE)",
+        "Utilized Git, Jenkins and Jira for CI/CD flows across Dev/QA/Prod and Project Management in an Agile Framework"
+      ],
+      icon: <FaServer />
+    },
+    {
+      id: 5,
+      title: "Embedded Software Engineering Intern",
+      company: "Millennium Semiconductors, India",
+      date: "June 2021 - August 2021",
+      points: [
+        "Successfully prototyped a wearable, low-cost, bluetooth-enabled patient monitoring system",
+        "Bare metal development on nRF52840 MCU using Segger Embedded System IDE w/ JTAG debugger and protocols like SPI, I2C, BLE"
+      ],
+      icon: <FaCode />
+    }
+  ];
+
+  const education = [
+    {
+      id: 1,
+      degree: "Master of Science - MS, Cyber-Physical Systems",
+      institution: "Northeastern University",
+      date: "September 2023 - August 2025",
+      grade: "Grade: 4.0",
+      activities: "Activities: President - IoT Connect Club (Spring 2025)",
+      courses: [
+        "Fundamentals of Internet of Things (TELE 6510)",
+        "Data Networking (TELE 5330)",
+        "Data Networking Lab (TELE 5331)",
+        "Connected Devices (TELE 6530)",
+        "ML for IoT (TELE 6500)",
+        "Software Security and Vulnerability (CY5770)",
+        "Computer Hardware Security (EECE 7390)",
+        "Embedded Device Drivers and Rust (TELE 7374)"
+      ]
+    }
+  ];
+
   return (
     <AboutContainer>
       <AboutTitle>About Me</AboutTitle>
-      <AboutContent>
+      
+      <ProfileSection>
+        <ProfileImageContainer>
+          <ProfileImagePlaceholder>
+            Upload a profile image at '/public/profile.jpg'
+          </ProfileImagePlaceholder>
+        </ProfileImageContainer>
+        
         <AboutText>
           <AboutParagraph>
             Hello! I'm Gautam Bidari, an Embedded Systems Engineer and IoT Specialist with a passion 
@@ -294,146 +427,107 @@ const About = () => {
             maintaining an active fitness routine.
           </AboutParagraph>
         </AboutText>
-        
-        <SkillsSection>
-          <SkillsTitle>Technical Skills</SkillsTitle>
-          <SkillsList>
-            <SkillItem>
-              <SkillIcon>
-                <FaMicrochip />
-              </SkillIcon>
-              <SkillName>nRF52840, ESP32, Arduino</SkillName>
-            </SkillItem>
-            <SkillItem>
-              <SkillIcon>
-                <FaCode />
-              </SkillIcon>
-              <SkillName>C/C++, Rust, Python</SkillName>
-            </SkillItem>
-            <SkillItem>
-              <SkillIcon>
-                <FaLaptopCode />
-              </SkillIcon>
-              <SkillName>SPI, I2C, JTAG, BLE, RTOS</SkillName>
-            </SkillItem>
-            <SkillItem>
-              <SkillIcon>
-                <FaServer />
-              </SkillIcon>
-              <SkillName>Java, SQL, Docker</SkillName>
-            </SkillItem>
-            <SkillItem>
-              <SkillIcon>
-                <FaRobot />
-              </SkillIcon>
-              <SkillName>TensorFlow, OpenCV</SkillName>
-            </SkillItem>
-            <SkillItem>
-              <SkillIcon>
-                <FaServer />
-              </SkillIcon>
-              <SkillName>Cloud Computing (GCP)</SkillName>
-            </SkillItem>
-          </SkillsList>
-        </SkillsSection>
-      </AboutContent>
-
-      <SectionContainer>
-        <SectionTitle>Education</SectionTitle>
-        <EducationContainer>
-          <EducationItem>
-            <EducationHeader>
-              <EducationDegree>Master of Science - MS, Cyber-Physical Systems</EducationDegree>
-              <EducationInstitution>Northeastern University</EducationInstitution>
-              <EducationDate>September 2023 - August 2025</EducationDate>
-              <EducationGrade>Grade: 4.0</EducationGrade>
-              <EducationActivities>Activities: President - IoT Connect Club (Spring 2025)</EducationActivities>
-            </EducationHeader>
-            <CourseworkTitle>Relevant Coursework:</CourseworkTitle>
-            <CourseList>
-              <CourseItem>Fundamentals of Internet of Things (TELE 6510)</CourseItem>
-              <CourseItem>Data Networking (TELE 5330)</CourseItem>
-              <CourseItem>Data Networking Lab (TELE 5331)</CourseItem>
-              <CourseItem>Connected Devices (TELE 6530)</CourseItem>
-              <CourseItem>ML for IoT (TELE 6500)</CourseItem>
-              <CourseItem>Software Security and Vulnerability (CY5770)</CourseItem>
-              <CourseItem>Computer Hardware Security (EECE 7390)</CourseItem>
-              <CourseItem>Embedded Device Drivers and Rust (TELE 7374)</CourseItem>
-            </CourseList>
-          </EducationItem>
-        </EducationContainer>
-      </SectionContainer>
+      </ProfileSection>
+      
+      <SkillsSection>
+        <SkillsTitle>Technical Skills</SkillsTitle>
+        <SkillsList>
+          <SkillItem>
+            <SkillIcon>
+              <FaMicrochip />
+            </SkillIcon>
+            <SkillName>nRF52840, ESP32, Arduino</SkillName>
+          </SkillItem>
+          <SkillItem>
+            <SkillIcon>
+              <FaCode />
+            </SkillIcon>
+            <SkillName>C/C++, Rust, Python</SkillName>
+          </SkillItem>
+          <SkillItem>
+            <SkillIcon>
+              <FaLaptopCode />
+            </SkillIcon>
+            <SkillName>SPI, I2C, JTAG, BLE, RTOS</SkillName>
+          </SkillItem>
+          <SkillItem>
+            <SkillIcon>
+              <FaServer />
+            </SkillIcon>
+            <SkillName>Java, SQL, Docker</SkillName>
+          </SkillItem>
+          <SkillItem>
+            <SkillIcon>
+              <FaRobot />
+            </SkillIcon>
+            <SkillName>TensorFlow, OpenCV</SkillName>
+          </SkillItem>
+          <SkillItem>
+            <SkillIcon>
+              <FaServer />
+            </SkillIcon>
+            <SkillName>Cloud Computing (GCP)</SkillName>
+          </SkillItem>
+        </SkillsList>
+      </SkillsSection>
 
       <SectionContainer>
         <SectionTitle>Work Experience</SectionTitle>
-        <ExperienceContainer>
-          <ExperienceItem>
-            <ExperienceHeader>
-              <ExperienceTitle>Teaching Assistant - ML for IoT Systems (TELE 6500)</ExperienceTitle>
-              <ExperienceCompany>Northeastern University, Boston, MA</ExperienceCompany>
-              <ExperienceDate>January 2025 - April 2025</ExperienceDate>
-            </ExperienceHeader>
-            <ExperienceDescription>
-              <ExperiencePoint>Responsible for designing and grading assignments and projects</ExperiencePoint>
-              <ExperiencePoint>Conducted weekly lab sessions using Python and frameworks like SKTime and SKForecast</ExperiencePoint>
-            </ExperienceDescription>
-          </ExperienceItem>
+        <Timeline>
+          {experiences.map((experience, index) => (
+            <TimelineItem 
+              key={experience.id} 
+              position={index % 2 === 0 ? 'left' : 'right'}
+            >
+              <TimelineContent>
+                <TimelineTitle>{experience.title}</TimelineTitle>
+                <TimelineCompany>{experience.company}</TimelineCompany>
+                <TimelineDate>{experience.date}</TimelineDate>
+                <TimelineDescription>
+                  {experience.points.map((point, i) => (
+                    <TimelinePoint key={i}>{point}</TimelinePoint>
+                  ))}
+                </TimelineDescription>
+              </TimelineContent>
+              <TimelineDot position={index % 2 === 0 ? 'left' : 'right'}>
+                <TimelineIcon>
+                  {experience.icon}
+                </TimelineIcon>
+              </TimelineDot>
+            </TimelineItem>
+          ))}
+        </Timeline>
+      </SectionContainer>
 
-          <ExperienceItem>
-            <ExperienceHeader>
-              <ExperienceTitle>Embedded Software Engineering Intern</ExperienceTitle>
-              <ExperienceCompany>Woods Hole Oceanographic Institute (WHOI), Woods Hole, MA</ExperienceCompany>
-              <ExperienceDate>June 2024 - December 2024</ExperienceDate>
-            </ExperienceHeader>
-            <ExperienceDescription>
-              <ExperiencePoint>Designed, built and field-tested a low-cost, high-precision optical pH sensor having 3rd decimal place precision and sampling rate 2x other devices</ExperiencePoint>
-              <ExperiencePoint>Designed, manufactured and assembled prototype PCBs using KiCad and JLCPCB</ExperiencePoint>
-              <ExperiencePoint>Wrote embedded C firmware libraries for nRF52840 MCU (ARM Cortex-M4) following a test driven development framework and MISRA C 2012 guidelines</ExperiencePoint>
-              <ExperiencePoint>Developed an interactive python-based GUI to control sensor components via BLE or Serial interface and plot sensor data in real-time</ExperiencePoint>
-              <ExperiencePoint>Wrote comprehensive unit and component tests using Unity framework</ExperiencePoint>
-              <ExperiencePoint>Documented UML and system state diagrams and used event driven architecture principles and design patterns</ExperiencePoint>
-              <ExperiencePoint>Interfaced sensor with Bristlemouth Dev Kit and Sofar Spotter for cellular/satellite connectivity</ExperiencePoint>
-              <ExperiencePoint>Collaborated with Lowell Instruments LLC to interface sensor with their commercial Deck Data Hub using BLE, enhancing deployment capabilities</ExperiencePoint>
-            </ExperienceDescription>
-          </ExperienceItem>
-
-          <ExperienceItem>
-            <ExperienceHeader>
-              <ExperienceTitle>Teaching Assistant - Data Networking (TELE 5330)</ExperienceTitle>
-              <ExperienceCompany>Northeastern University, Boston, MA</ExperienceCompany>
-              <ExperienceDate>January 2024 - April 2024</ExperienceDate>
-            </ExperienceHeader>
-            <ExperienceDescription>
-              <ExperiencePoint>Responsible for designing and grading assignments, projects, and viva evaluations</ExperiencePoint>
-              <ExperiencePoint>Conducted weekly Networking Lab sessions using Cisco Packet Tracer and Ubuntu Linux</ExperiencePoint>
-            </ExperienceDescription>
-          </ExperienceItem>
-
-          <ExperienceItem>
-            <ExperienceHeader>
-              <ExperienceTitle>Java Backend Developer</ExperienceTitle>
-              <ExperienceCompany>Deloitte Consulting, India</ExperienceCompany>
-              <ExperienceDate>June 2022 - August 2023</ExperienceDate>
-            </ExperienceHeader>
-            <ExperienceDescription>
-              <ExperiencePoint>Awarded Deloitte Applause Award for end-to-end implementation of core modules supporting 5+ business use cases (0 critical post-deployment defects)</ExperiencePoint>
-              <ExperiencePoint>Built 20+ REST endpoints using Spring Boot Microservices with 99.9% uptime SLA. Containerized deployment using Docker and Google Kubernetes Engine (GKE)</ExperiencePoint>
-              <ExperiencePoint>Utilized Git, Jenkins and Jira for CI/CD flows across Dev/QA/Prod and Project Management in an Agile Framework</ExperiencePoint>
-            </ExperienceDescription>
-          </ExperienceItem>
-
-          <ExperienceItem>
-            <ExperienceHeader>
-              <ExperienceTitle>Embedded Software Engineering Intern</ExperienceTitle>
-              <ExperienceCompany>Millennium Semiconductors, India</ExperienceCompany>
-              <ExperienceDate>June 2021 - August 2021</ExperienceDate>
-            </ExperienceHeader>
-            <ExperienceDescription>
-              <ExperiencePoint>Successfully prototyped a wearable, low-cost, bluetooth-enabled patient monitoring system</ExperiencePoint>
-              <ExperiencePoint>Bare metal development on nRF52840 MCU using Segger Embedded System IDE w/ JTAG debugger and protocols like SPI, I2C, BLE</ExperiencePoint>
-            </ExperienceDescription>
-          </ExperienceItem>
-        </ExperienceContainer>
+      <SectionContainer>
+        <SectionTitle>Education</SectionTitle>
+        <Timeline>
+          {education.map((edu, index) => (
+            <TimelineItem 
+              key={edu.id} 
+              position="left"
+            >
+              <TimelineContent>
+                <TimelineTitle>{edu.degree}</TimelineTitle>
+                <TimelineCompany>{edu.institution}</TimelineCompany>
+                <TimelineDate>{edu.date}</TimelineDate>
+                <p style={{ color: '#aaaaaa', margin: '0.5rem 0', fontSize: '0.9rem' }}>{edu.grade}</p>
+                <p style={{ color: '#aaaaaa', margin: '0 0 1rem', fontSize: '0.9rem' }}>{edu.activities}</p>
+                <h6 style={{ fontSize: '1rem', color: '#ffffff', marginBottom: '0.5rem' }}>Relevant Coursework:</h6>
+                <TimelineDescription>
+                  {edu.courses.map((course, i) => (
+                    <TimelinePoint key={i}>{course}</TimelinePoint>
+                  ))}
+                </TimelineDescription>
+              </TimelineContent>
+              <TimelineDot position="left">
+                <TimelineIcon>
+                  <FaGraduationCap />
+                </TimelineIcon>
+              </TimelineDot>
+            </TimelineItem>
+          ))}
+        </Timeline>
       </SectionContainer>
     </AboutContainer>
   );
