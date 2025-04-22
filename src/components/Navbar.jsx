@@ -142,7 +142,7 @@ const Navbar = () => {
   return (
     <>
       <Nav>
-        <Logo to="/">PORTFOLIO</Logo>
+        <Logo to="/">GAUTAM BIDARI</Logo>
         <MobileIcon onClick={toggle}>
           {isOpen ? <FaTimes /> : <FaBars />}
         </MobileIcon>

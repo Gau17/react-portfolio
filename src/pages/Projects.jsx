@@ -120,7 +120,7 @@ const Projects = () => {
       tech: ['Linux Device Drivers', 'Yocto', 'Rust', 'GPIO', 'Raspberry Pi'],
       github: 'https://github.com',
       demo: '#',
-      image: '',
+      image: `${process.env.PUBLIC_URL}/images/projects/embedded-linux.jpeg`,
     },
     {
       id: 2,
@@ -130,7 +130,7 @@ const Projects = () => {
       tech: ['Embedded Security', 'ChaCha20Poly1305', 'SHA512 HKDF', 'MAX78000', 'Hardware Security'],
       github: 'https://github.com',
       demo: '#',
-      image: '',
+      image: `${process.env.PUBLIC_URL}/images/projects/ectf.jpg`,
     },
     {
       id: 3,
@@ -140,7 +140,7 @@ const Projects = () => {
       tech: ['IoT', 'Matter', 'Thread', 'Arduino Nano', 'SPI', 'I2C'],
       github: 'https://github.com',
       demo: '#',
-      image: '',
+      image: `${process.env.PUBLIC_URL}/images/projects/matter-challenge.png`,
     },
     {
       id: 4,
@@ -150,17 +150,17 @@ const Projects = () => {
       tech: ['Time Series', 'Forecasting', 'ARIMA', 'SARIMA', 'XGBoost', 'Python'],
       github: 'https://github.com',
       demo: '#',
-      image: '',
+      image: `${process.env.PUBLIC_URL}/images/projects/time-series.webp`,
     },
     {
       id: 5,
-      title: 'IoT Smart Home Thermal Management System',
+      title: 'IoT Data Center Thermal Management System',
       date: 'Jan 2024 - April 2024',
       description: 'Designed an IoT control system using temperature, humidity, and pressure sensors with automated HVAC controls via MQTT. Applied ML algorithms for predictive maintenance to reduce downtime by 30%.',
       tech: ['IoT', 'MQTT', 'Edge AI', 'Raspberry Pi', 'Redis'],
       github: 'https://github.com',
       demo: '#',
-      image: '',
+      image: `${process.env.PUBLIC_URL}/images/projects/data-center.avif`,
     },
     {
       id: 6,
@@ -170,7 +170,7 @@ const Projects = () => {
       tech: ['Linux', 'DHCP', 'DNS', 'BIND9', 'IPSec VPN', 'Apache2'],
       github: 'https://github.com',
       demo: '#',
-      image: '',
+      image: `${process.env.PUBLIC_URL}/images/projects/network-design.jpg`,
     },
     {
       id: 7,
@@ -180,7 +180,7 @@ const Projects = () => {
       tech: ['Network Design', 'OSPF', 'EIGRP', 'VLANs', 'ACLs', 'Cisco'],
       github: 'https://github.com',
       demo: '#',
-      image: '',
+      image: `${process.env.PUBLIC_URL}/images/projects/cisco-network.jpg`,
     },
     {
       id: 8,
@@ -190,7 +190,7 @@ const Projects = () => {
       tech: ['Digital Signal Processing', 'FFT', 'DWT', 'Audio Fingerprinting', 'Synchronization'],
       github: 'https://github.com',
       demo: '#',
-      image: '',
+      image: `${process.env.PUBLIC_URL}/images/projects/audio-waves.jpg`,
     },
     {
       id: 9,
@@ -200,7 +200,7 @@ const Projects = () => {
       tech: ['ESP32', 'BLE', 'Healthcare IoT', 'Android App', 'Remote Monitoring'],
       github: 'https://github.com',
       demo: '#',
-      image: '',
+      image: `${process.env.PUBLIC_URL}/images/projects/smart-mask.jpg`,
     },
   ];
 
