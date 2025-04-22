@@ -479,7 +479,7 @@ const About = () => {
       <ProfileSection>
         <ProfileImageContainer>
           <img 
-            src="/profile.JPG" 
+            src={process.env.PUBLIC_URL + "/profile.JPG"}
             alt="Gautam Bidari" 
             style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'relative', zIndex: 0 }}
             onError={(e) => {
@@ -517,10 +517,10 @@ const About = () => {
             Download my resume to see detailed information about my education, work experience, skills, and achievements.
           </ResumeText>
           <ResumeButtons>
-            <ResumeButton primary href="/resume.pdf" download="Gautam_Bidari_Resume.pdf">
+            <ResumeButton primary href={process.env.PUBLIC_URL + "/resume.pdf"} download="Gautam_Bidari_Resume.pdf">
               <FaFileDownload /> Download Resume
             </ResumeButton>
-            <ResumeButton href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+            <ResumeButton href={process.env.PUBLIC_URL + "/resume.pdf"} target="_blank" rel="noopener noreferrer">
               <FaEye /> View Resume
             </ResumeButton>
           </ResumeButtons>

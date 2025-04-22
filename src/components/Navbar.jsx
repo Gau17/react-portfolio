@@ -151,7 +151,7 @@ const Navbar = () => {
           <NavLink to="/about">About</NavLink>
           <NavLink to="/projects">Projects</NavLink>
           <NavLink to="/contact">Contact</NavLink>
-          <ResumeLink href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+          <ResumeLink href={process.env.PUBLIC_URL + "/resume.pdf"} target="_blank" rel="noopener noreferrer">
             <FaFileAlt /> Resume
           </ResumeLink>
         </NavMenu>
@@ -161,7 +161,7 @@ const Navbar = () => {
         <MobileLink to="/about" onClick={toggle}>About</MobileLink>
         <MobileLink to="/projects" onClick={toggle}>Projects</MobileLink>
         <MobileLink to="/contact" onClick={toggle}>Contact</MobileLink>
-        <MobileResumeLink href="/resume.pdf" target="_blank" rel="noopener noreferrer" onClick={toggle}>
+        <MobileResumeLink href={process.env.PUBLIC_URL + "/resume.pdf"} target="_blank" rel="noopener noreferrer" onClick={toggle}>
           <FaFileAlt /> Resume
         </MobileResumeLink>
       </MobileMenu>

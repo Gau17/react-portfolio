@@ -193,7 +193,7 @@ const Contact = () => {
     {
       platform: "Resume",
       icon: <FaFileAlt />,
-      url: "/resume.pdf",
+      url: process.env.PUBLIC_URL + "/resume.pdf",
       username: "Download PDF",
       gradient: "linear-gradient(135deg, #15cdfc, #4e4bd0)"
     },
