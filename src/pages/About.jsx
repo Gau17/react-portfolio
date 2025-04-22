@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaCode, FaLaptopCode, FaServer, FaMicrochip, FaRobot } from 'react-icons/fa';
+import { FaCode, FaLaptopCode, FaServer, FaMicrochip, FaRobot, FaFileAlt } from 'react-icons/fa';
 
 const AboutContainer = styled.div`
   padding: 5rem 2rem;
@@ -192,6 +192,78 @@ const CourseItem = styled.li`
   margin-bottom: 0.5rem;
 `;
 
+const ResumeSection = styled.div`
+  margin-top: 4rem;
+  max-width: 1200px;
+  margin: 4rem auto 0;
+  background: #fff;
+  padding: 3rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+`;
+
+const ResumeTitle = styled.h3`
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #1a1a1a;
+`;
+
+const ResumeDescription = styled.p`
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const DownloadButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #15cdfc;
+  color: #000;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  box-shadow: 0 4px 8px rgba(21, 205, 252, 0.3);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(21, 205, 252, 0.4);
+    background: #0eb4e3;
+  }
+`;
+
+const DownloadIcon = styled.span`
+  margin-right: 10px;
+  font-size: 1.5rem;
+`;
+
+const KeySkills = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+  gap: 1rem;
+`;
+
+const SkillPill = styled.span`
+  background: #f0f0f0;
+  color: #333;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+`;
+
 const About = () => {
   return (
     <AboutContainer>
@@ -356,6 +428,37 @@ const About = () => {
           </ExperienceItem>
         </ExperienceContainer>
       </SectionContainer>
+
+      <ResumeSection>
+        <ResumeTitle>Download My Resume</ResumeTitle>
+        <ResumeDescription>
+          Looking for a more detailed overview of my professional background, technical skills, and education?
+          Download my full resume to learn more about my qualifications and experience.
+        </ResumeDescription>
+        <KeySkills>
+          <SkillPill>Embedded Systems</SkillPill>
+          <SkillPill>IoT</SkillPill>
+          <SkillPill>C/C++</SkillPill>
+          <SkillPill>Rust</SkillPill>
+          <SkillPill>Python</SkillPill>
+          <SkillPill>ML for IoT</SkillPill>
+          <SkillPill>Microcontrollers</SkillPill>
+          <SkillPill>PCB Design</SkillPill>
+          <SkillPill>Linux</SkillPill>
+          <SkillPill>Java</SkillPill>
+        </KeySkills>
+        <DownloadButton 
+          href="/resume.pdf" 
+          download="Gautam_Bidari_Resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <DownloadIcon>
+            <FaFileAlt />
+          </DownloadIcon>
+          Download Resume
+        </DownloadButton>
+      </ResumeSection>
     </AboutContainer>
   );
 };

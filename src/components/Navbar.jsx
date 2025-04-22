@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes, FaFileAlt } from 'react-icons/fa';
 
 const Nav = styled.nav`
   background: #1a1a1a;
@@ -50,6 +50,25 @@ const NavLink = styled(Link)`
     color: #15cdfc;
     transition: all 0.3s ease;
   }
+`;
+
+const ResumeLink = styled.a`
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+
+  &:hover {
+    color: #15cdfc;
+    transition: all 0.3s ease;
+  }
+`;
+
+const ResumeIcon = styled(FaFileAlt)`
+  margin-right: 0.5rem;
 `;
 
 const MobileIcon = styled.div`
@@ -111,6 +130,9 @@ const Navbar = () => {
           <NavLink to="/about">About</NavLink>
           <NavLink to="/projects">Projects</NavLink>
           <NavLink to="/contact">Contact</NavLink>
+          <ResumeLink href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+            <ResumeIcon />Resume
+          </ResumeLink>
         </NavMenu>
       </Nav>
       <MobileMenu isOpen={isOpen}>
@@ -118,6 +140,9 @@ const Navbar = () => {
         <MobileLink to="/about" onClick={toggle}>About</MobileLink>
         <MobileLink to="/projects" onClick={toggle}>Projects</MobileLink>
         <MobileLink to="/contact" onClick={toggle}>Contact</MobileLink>
+        <MobileLink as="a" href="/resume.pdf" target="_blank" rel="noopener noreferrer" onClick={toggle}>
+          Resume
+        </MobileLink>
       </MobileMenu>
     </>
   );
