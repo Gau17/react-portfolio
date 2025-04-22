@@ -47,18 +47,11 @@ const ProfileImageContainer = styled.div`
   position: relative;
   border-radius: 10px;
   overflow: hidden;
+  aspect-ratio: 1/1.2;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  aspect-ratio: 1/1;
   max-width: 350px;
   margin: 0 auto;
-  
-  &:before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(45deg, rgba(21, 205, 252, 0.3), rgba(95, 101, 249, 0.3));
-    z-index: 1;
-  }
+  height: auto;
   
   &:after {
     content: '';

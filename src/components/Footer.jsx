@@ -89,7 +89,7 @@ const Footer = () => {
     <FooterContainer>
       <SocialIcons>
         <SocialIconLink 
-          href="https://github.com" 
+          href="https://github.com/Gau17" 
           target="_blank" 
           aria-label="GitHub"
           gradient="linear-gradient(135deg, #333, #6e5494)"
@@ -97,7 +97,7 @@ const Footer = () => {
           <FaGithub />
         </SocialIconLink>
         <SocialIconLink 
-          href="https://linkedin.com" 
+          href="https://linkedin.com/in/gautam-bidari" 
           target="_blank" 
           aria-label="LinkedIn"
           gradient="linear-gradient(135deg, #0077b5, #0a66c2)"
@@ -105,7 +105,7 @@ const Footer = () => {
           <FaLinkedin />
         </SocialIconLink>
         <SocialIconLink 
-          href="https://youtube.com" 
+          href="https://youtube.com/@gautambidari" 
           target="_blank" 
           aria-label="YouTube"
           gradient="linear-gradient(135deg, #FF0000, #CC0000)"
@@ -113,7 +113,7 @@ const Footer = () => {
           <FaYoutube />
         </SocialIconLink>
         <SocialIconLink 
-          href="mailto:your.email@example.com" 
+          href="mailto:bidari.g@northeastern.edu" 
           aria-label="Email"
           gradient="linear-gradient(135deg, #15cdfc, #4e4bd0)"
         >
