@@ -1,34 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaCode, FaLaptopCode, FaServer, FaMicrochip, FaRobot, FaFileAlt } from 'react-icons/fa';
+import { FaCode, FaLaptopCode, FaServer, FaMicrochip, FaRobot } from 'react-icons/fa';
 
 const AboutContainer = styled.div`
-  padding: 5rem 2rem;
-  background: #f9f9f9;
-  
-  @media screen and (max-width: 768px) {
-    padding: 3rem 1.5rem;
-  }
-  
-  @media screen and (max-width: 480px) {
-    padding: 2.5rem 1rem;
-  }
+  padding: calc(1.618rem * 3) calc(1.618rem * 1.2);
+  background: #121212;
+  color: #e0e0e0;
 `;
 
 const AboutTitle = styled.h2`
-  font-size: 2.5rem;
+  font-size: calc(1.618rem * 1.618);
   text-align: center;
-  margin-bottom: 3rem;
-  color: #1a1a1a;
-  
-  @media screen and (max-width: 768px) {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-  }
-  
-  @media screen and (max-width: 480px) {
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
+  margin-bottom: calc(1.618rem * 1.8);
+  color: #ffffff;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #15cdfc, #5f65f9);
+    border-radius: 3px;
   }
 `;
 
@@ -37,11 +35,10 @@ const AboutContent = styled.div`
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 3rem;
+  grid-gap: calc(1.618rem * 1.8);
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
-    grid-gap: 2rem;
   }
 `;
 
@@ -49,38 +46,41 @@ const AboutText = styled.div``;
 
 const AboutParagraph = styled.p`
   font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
-  color: #333;
-  
-  @media screen and (max-width: 768px) {
-    font-size: 1rem;
-    line-height: 1.7;
-    margin-bottom: 1.2rem;
-  }
+  line-height: 1.618;
+  margin-bottom: 1.618rem;
+  color: #e0e0e0;
+  font-weight: 400;
+  letter-spacing: 0.01rem;
 `;
 
 const SkillsSection = styled.div``;
 
 const SkillsTitle = styled.h3`
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  color: #1a1a1a;
+  font-size: calc(1.618rem * 1.1);
+  margin-bottom: 1.618rem;
+  color: #ffffff;
+  position: relative;
+  display: inline-block;
   
-  @media screen and (max-width: 768px) {
-    font-size: 1.5rem;
-    margin-bottom: 1.2rem;
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(90deg, #15cdfc, #5f65f9);
+    border-radius: 2px;
   }
 `;
 
 const SkillsList = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem;
+  grid-gap: 1.618rem;
 
   @media screen and (max-width: 480px) {
     grid-template-columns: 1fr;
-    grid-gap: 0.8rem;
   }
 `;
 
@@ -88,9 +88,10 @@ const SkillItem = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
+  transition: transform 0.3s ease;
   
-  @media screen and (max-width: 480px) {
-    margin-bottom: 0.8rem;
+  &:hover {
+    transform: translateX(5px);
   }
 `;
 
@@ -98,402 +99,176 @@ const SkillIcon = styled.div`
   font-size: 1.5rem;
   margin-right: 1rem;
   color: #15cdfc;
-  
-  @media screen and (max-width: 480px) {
-    font-size: 1.3rem;
-    margin-right: 0.8rem;
-  }
+  background: rgba(21, 205, 252, 0.1);
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const SkillName = styled.p`
   font-size: 1.1rem;
-  color: #333;
-  
-  @media screen and (max-width: 480px) {
-    font-size: 1rem;
-  }
+  color: #e0e0e0;
 `;
 
 const SectionContainer = styled.div`
-  margin-top: 4rem;
+  margin-top: calc(1.618rem * 2.5);
   max-width: 1200px;
-  margin: 4rem auto 0;
-  
-  @media screen and (max-width: 768px) {
-    margin-top: 3rem;
-  }
-  
-  @media screen and (max-width: 480px) {
-    margin-top: 2.5rem;
-  }
+  margin: calc(1.618rem * 2.5) auto 0;
 `;
 
 const SectionTitle = styled.h3`
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #1a1a1a;
+  font-size: calc(1.618rem * 1.2);
+  margin-bottom: calc(1.618rem * 1.2);
+  color: #ffffff;
+  position: relative;
+  display: inline-block;
   
-  @media screen and (max-width: 768px) {
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  @media screen and (max-width: 480px) {
-    font-size: 1.6rem;
-    margin-bottom: 1.2rem;
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(90deg, #15cdfc, #5f65f9);
+    border-radius: 2px;
   }
 `;
 
 const ExperienceContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  
-  @media screen and (max-width: 768px) {
-    gap: 1.5rem;
-  }
-  
-  @media screen and (max-width: 480px) {
-    gap: 1.2rem;
-  }
+  gap: calc(1.618rem * 1.2);
 `;
 
 const ExperienceItem = styled.div`
-  background: #fff;
-  padding: 2rem;
+  background: #1e1e1e;
+  padding: 1.618rem;
   border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
   
-  @media screen and (max-width: 768px) {
-    padding: 1.5rem;
-  }
-  
-  @media screen and (max-width: 480px) {
-    padding: 1.2rem;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #15cdfc, #5f65f9);
   }
 `;
 
 const ExperienceHeader = styled.div`
-  margin-bottom: 1.5rem;
-  
-  @media screen and (max-width: 480px) {
-    margin-bottom: 1rem;
-  }
+  margin-bottom: 1.618rem;
 `;
 
 const ExperienceTitle = styled.h4`
-  font-size: 1.5rem;
-  color: #1a1a1a;
+  font-size: calc(1.618rem * 0.9);
+  color: #ffffff;
   margin-bottom: 0.5rem;
-  
-  @media screen and (max-width: 768px) {
-    font-size: 1.3rem;
-  }
-  
-  @media screen and (max-width: 480px) {
-    font-size: 1.2rem;
-  }
 `;
 
 const ExperienceCompany = styled.h5`
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #15cdfc;
   margin-bottom: 0.5rem;
-  
-  @media screen and (max-width: 768px) {
-    font-size: 1.1rem;
-  }
-  
-  @media screen and (max-width: 480px) {
-    font-size: 1rem;
-  }
 `;
 
 const ExperienceDate = styled.p`
-  font-size: 1rem;
-  color: #555;
+  font-size: 0.9rem;
+  color: #aaaaaa;
   font-style: italic;
-  
-  @media screen and (max-width: 480px) {
-    font-size: 0.9rem;
-  }
 `;
 
 const ExperienceDescription = styled.ul`
-  padding-left: 1.5rem;
-  
-  @media screen and (max-width: 480px) {
-    padding-left: 1.2rem;
-  }
+  padding-left: 1.618rem;
 `;
 
 const ExperiencePoint = styled.li`
-  font-size: 1.1rem;
-  color: #333;
+  font-size: 1rem;
+  color: #e0e0e0;
   margin-bottom: 0.75rem;
-  line-height: 1.6;
-  
-  @media screen and (max-width: 768px) {
-    font-size: 1rem;
-    margin-bottom: 0.6rem;
-  }
-  
-  @media screen and (max-width: 480px) {
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
+  line-height: 1.618;
 `;
 
 const EducationContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  
-  @media screen and (max-width: 768px) {
-    gap: 1.5rem;
-  }
+  gap: calc(1.618rem * 1.2);
 `;
 
 const EducationItem = styled.div`
-  background: #fff;
-  padding: 2rem;
+  background: #1e1e1e;
+  padding: 1.618rem;
   border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
   
-  @media screen and (max-width: 768px) {
-    padding: 1.5rem;
-  }
-  
-  @media screen and (max-width: 480px) {
-    padding: 1.2rem;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #15cdfc, #5f65f9);
   }
 `;
 
 const EducationHeader = styled.div`
-  margin-bottom: 1.5rem;
-  
-  @media screen and (max-width: 480px) {
-    margin-bottom: 1rem;
-  }
+  margin-bottom: 1.618rem;
 `;
 
 const EducationDegree = styled.h4`
-  font-size: 1.5rem;
-  color: #1a1a1a;
+  font-size: calc(1.618rem * 0.9);
+  color: #ffffff;
   margin-bottom: 0.5rem;
-  
-  @media screen and (max-width: 768px) {
-    font-size: 1.3rem;
-  }
-  
-  @media screen and (max-width: 480px) {
-    font-size: 1.2rem;
-  }
 `;
 
 const EducationInstitution = styled.h5`
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #15cdfc;
   margin-bottom: 0.5rem;
-  
-  @media screen and (max-width: 768px) {
-    font-size: 1.1rem;
-  }
 `;
 
 const EducationDate = styled.p`
-  font-size: 1rem;
-  color: #555;
+  font-size: 0.9rem;
+  color: #aaaaaa;
   font-style: italic;
   margin-bottom: 0.5rem;
-  
-  @media screen and (max-width: 480px) {
-    font-size: 0.9rem;
-  }
 `;
 
 const EducationGrade = styled.p`
-  font-size: 1rem;
-  color: #555;
+  font-size: 0.9rem;
+  color: #aaaaaa;
   margin-bottom: 0.5rem;
-  
-  @media screen and (max-width: 480px) {
-    font-size: 0.9rem;
-  }
 `;
 
 const EducationActivities = styled.p`
-  font-size: 1rem;
-  color: #555;
+  font-size: 0.9rem;
+  color: #aaaaaa;
   margin-bottom: 1rem;
-  
-  @media screen and (max-width: 480px) {
-    font-size: 0.9rem;
-    margin-bottom: 0.8rem;
-  }
 `;
 
 const CourseworkTitle = styled.h6`
-  font-size: 1.1rem;
-  color: #1a1a1a;
+  font-size: 1rem;
+  color: #ffffff;
   margin-bottom: 0.5rem;
-  
-  @media screen and (max-width: 480px) {
-    font-size: 1rem;
-  }
 `;
 
 const CourseList = styled.ul`
-  padding-left: 1.5rem;
-  
-  @media screen and (max-width: 480px) {
-    padding-left: 1.2rem;
-  }
+  padding-left: 1.618rem;
 `;
 
 const CourseItem = styled.li`
-  font-size: 1rem;
-  color: #333;
+  font-size: 0.9rem;
+  color: #e0e0e0;
   margin-bottom: 0.5rem;
-  
-  @media screen and (max-width: 480px) {
-    font-size: 0.9rem;
-    margin-bottom: 0.4rem;
-  }
-`;
-
-const ResumeSection = styled.div`
-  margin-top: 4rem;
-  max-width: 1200px;
-  margin: 4rem auto 0;
-  background: #fff;
-  padding: 3rem;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  
-  @media screen and (max-width: 768px) {
-    padding: 2rem;
-    margin-top: 3rem;
-  }
-  
-  @media screen and (max-width: 480px) {
-    padding: 1.5rem;
-    margin-top: 2.5rem;
-  }
-`;
-
-const ResumeTitle = styled.h3`
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #1a1a1a;
-  
-  @media screen and (max-width: 768px) {
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  @media screen and (max-width: 480px) {
-    font-size: 1.6rem;
-    margin-bottom: 1.2rem;
-  }
-`;
-
-const ResumeDescription = styled.p`
-  font-size: 1.1rem;
-  color: #333;
-  line-height: 1.8;
-  margin-bottom: 2rem;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  
-  @media screen and (max-width: 768px) {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-`;
-
-const KeySkills = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 800px;
-  margin: 0 auto 2rem auto;
-  gap: 1rem;
-  
-  @media screen and (max-width: 768px) {
-    gap: 0.8rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  @media screen and (max-width: 480px) {
-    gap: 0.6rem;
-    margin-bottom: 1.2rem;
-  }
-`;
-
-const SkillPill = styled.span`
-  background: #f0f0f0;
-  color: #333;
-  padding: 0.5rem 1.5rem;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 500;
-  
-  @media screen and (max-width: 768px) {
-    padding: 0.4rem 1.2rem;
-    font-size: 0.9rem;
-  }
-  
-  @media screen and (max-width: 480px) {
-    padding: 0.3rem 1rem;
-    font-size: 0.8rem;
-  }
-`;
-
-const DownloadButton = styled.a`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #15cdfc;
-  color: #000;
-  padding: 1rem 2.5rem;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.2rem;
-  transition: all 0.3s ease;
-  margin-top: 1rem;
-  box-shadow: 0 4px 8px rgba(21, 205, 252, 0.3);
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(21, 205, 252, 0.4);
-    background: #0eb4e3;
-  }
-  
-  @media screen and (max-width: 768px) {
-    padding: 0.8rem 2rem;
-    font-size: 1.1rem;
-  }
-  
-  @media screen and (max-width: 480px) {
-    padding: 0.7rem 1.8rem;
-    font-size: 1rem;
-    width: 100%;
-    max-width: 250px;
-  }
-`;
-
-const DownloadIcon = styled.span`
-  margin-right: 10px;
-  font-size: 1.5rem;
-  
-  @media screen and (max-width: 480px) {
-    font-size: 1.2rem;
-  }
 `;
 
 const About = () => {
@@ -660,37 +435,6 @@ const About = () => {
           </ExperienceItem>
         </ExperienceContainer>
       </SectionContainer>
-
-      <ResumeSection>
-        <ResumeTitle>Download My Resume</ResumeTitle>
-        <ResumeDescription>
-          Looking for a more detailed overview of my professional background, technical skills, and education?
-          Download my full resume to learn more about my qualifications and experience.
-        </ResumeDescription>
-        <KeySkills>
-          <SkillPill>Embedded Systems</SkillPill>
-          <SkillPill>IoT</SkillPill>
-          <SkillPill>C/C++</SkillPill>
-          <SkillPill>Rust</SkillPill>
-          <SkillPill>Python</SkillPill>
-          <SkillPill>ML for IoT</SkillPill>
-          <SkillPill>Microcontrollers</SkillPill>
-          <SkillPill>PCB Design</SkillPill>
-          <SkillPill>Linux</SkillPill>
-          <SkillPill>Java</SkillPill>
-        </KeySkills>
-        <DownloadButton 
-          href="/resume.pdf" 
-          download="Gautam_Bidari_Resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <DownloadIcon>
-            <FaFileAlt />
-          </DownloadIcon>
-          Download Resume
-        </DownloadButton>
-      </ResumeSection>
     </AboutContainer>
   );
 };

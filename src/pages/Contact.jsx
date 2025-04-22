@@ -4,23 +4,14 @@ import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 
 const ContactContainer = styled.div`
   padding: 5rem 2rem;
-  background: #f9f9f9;
-  
-  @media screen and (max-width: 768px) {
-    padding: 3rem 1rem;
-  }
+  background: #121212;
 `;
 
 const ContactTitle = styled.h2`
   font-size: 2.5rem;
   text-align: center;
   margin-bottom: 3rem;
-  color: #1a1a1a;
-  
-  @media screen and (max-width: 768px) {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-  }
+  color: #ffffff;
 `;
 
 const ContactWrapper = styled.div`
@@ -32,7 +23,6 @@ const ContactWrapper = styled.div`
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
-    grid-gap: 2rem;
   }
 `;
 
@@ -44,29 +34,40 @@ const ContactForm = styled.form`
 const FormInput = styled.input`
   padding: 1rem;
   margin-bottom: 1.5rem;
-  border: 1px solid #ccc;
+  border: 1px solid #333333;
   border-radius: 4px;
   font-size: 1rem;
+  background: #252525;
+  color: #e0e0e0;
   
-  @media screen and (max-width: 480px) {
-    padding: 0.8rem;
-    margin-bottom: 1.2rem;
+  &:focus {
+    outline: none;
+    border-color: #15cdfc;
+  }
+  
+  &::placeholder {
+    color: #a0a0a0;
   }
 `;
 
 const FormTextarea = styled.textarea`
   padding: 1rem;
   margin-bottom: 1.5rem;
-  border: 1px solid #ccc;
+  border: 1px solid #333333;
   border-radius: 4px;
   font-size: 1rem;
   min-height: 150px;
   resize: vertical;
+  background: #252525;
+  color: #e0e0e0;
   
-  @media screen and (max-width: 480px) {
-    padding: 0.8rem;
-    min-height: 120px;
-    margin-bottom: 1.2rem;
+  &:focus {
+    outline: none;
+    border-color: #15cdfc;
+  }
+  
+  &::placeholder {
+    color: #a0a0a0;
   }
 `;
 
@@ -86,35 +87,18 @@ const SubmitButton = styled.button`
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
-  
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
-  
-  @media screen and (max-width: 480px) {
-    padding: 0.8rem;
-  }
 `;
 
 const ContactInfo = styled.div`
   display: flex;
   flex-direction: column;
-  
-  @media screen and (max-width: 768px) {
-    order: -1;
-  }
 `;
 
 const ContactText = styled.p`
   font-size: 1.1rem;
   line-height: 1.8;
   margin-bottom: 2rem;
-  color: #333;
-  
-  @media screen and (max-width: 768px) {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-  }
+  color: #e0e0e0;
 `;
 
 const ContactDetailsWrapper = styled.div`
@@ -125,10 +109,6 @@ const ContactDetail = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 1.5rem;
-  
-  @media screen and (max-width: 480px) {
-    margin-bottom: 1.2rem;
-  }
 `;
 
 const ContactIcon = styled.span`
@@ -139,7 +119,7 @@ const ContactIcon = styled.span`
 
 const ContactInfoText = styled.p`
   font-size: 1rem;
-  color: #333;
+  color: #e0e0e0;
 `;
 
 const FormSubmitMessage = styled.div`
@@ -148,7 +128,7 @@ const FormSubmitMessage = styled.div`
   border-radius: 4px;
   text-align: center;
   color: ${(props) => (props.success ? '#4caf50' : '#f44336')};
-  background-color: ${(props) => (props.success ? '#e8f5e9' : '#ffebee')};
+  background-color: ${(props) => (props.success ? 'rgba(76, 175, 80, 0.1)' : 'rgba(244, 67, 54, 0.1)')};
   display: ${(props) => (props.visible ? 'block' : 'none')};
 `;
 

@@ -3,97 +3,106 @@ import styled from 'styled-components';
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
 
 const FooterContainer = styled.footer`
-  background-color: #1a1a1a;
-  color: #fff;
-  padding: 2rem 0;
-  
-  @media screen and (max-width: 768px) {
-    padding: 1.5rem 0;
-  }
-`;
-
-const FooterContent = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
+  background-color: var(--bg-color);
+  position: relative;
+  color: var(--text-color);
+  padding: var(--space-5) 0;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 0 2rem;
+  overflow: hidden;
   
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 0 1.5rem;
-  }
-`;
-
-const FooterLogo = styled.div`
-  font-size: 1.5rem;
-  font-weight: bold;
-  
-  @media screen and (max-width: 768px) {
-    font-size: 1.3rem;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--primary-gradient);
+    opacity: 0.3;
   }
 `;
 
 const SocialIcons = styled.div`
   display: flex;
-  gap: 1.5rem;
-  
-  @media screen and (max-width: 480px) {
-    gap: 1.2rem;
-  }
+  justify-content: center;
+  margin-bottom: var(--space-4);
 `;
 
-const SocialIcon = styled.a`
-  color: #fff;
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
+const SocialIconLink = styled.a`
+  color: var(--text-color);
+  font-size: var(--font-xl);
+  margin: 0 var(--space-3);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-4);
+  height: var(--space-4);
+  border-radius: var(--radius-full);
+  position: relative;
+  overflow: hidden;
   
+  &:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--primary-gradient);
+    opacity: 0;
+    transition: var(--transition);
+    z-index: -1;
+    transform: scale(0.8);
+    border-radius: var(--radius-full);
+  }
+
   &:hover {
-    color: #15cdfc;
-  }
-  
-  @media screen and (max-width: 768px) {
-    font-size: 1.3rem;
+    color: var(--light-color);
+    transform: translateY(-3px);
+    
+    &:after {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 `;
 
-const Copyright = styled.div`
+const FooterText = styled.p`
   text-align: center;
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
-  color: #aaa;
-  
-  @media screen and (max-width: 768px) {
-    margin-top: 1rem;
-    font-size: 0.8rem;
-  }
+  margin-bottom: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--font-sm);
+  max-width: 600px;
+  padding: 0 var(--space-4);
+`;
+
+const FooterHighlight = styled.span`
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
 `;
 
 const Footer = () => {
   return (
     <FooterContainer>
-      <FooterContent>
-        <FooterLogo>Gautam Bidari</FooterLogo>
-        <SocialIcons>
-          <SocialIcon href="https://github.com/Gau17" target="_blank" rel="noopener noreferrer">
-            <FaGithub />
-          </SocialIcon>
-          <SocialIcon href="https://linkedin.com/in/gautam-bidari" target="_blank" rel="noopener noreferrer">
-            <FaLinkedin />
-          </SocialIcon>
-          <SocialIcon href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-            <FaTwitter />
-          </SocialIcon>
-          <SocialIcon href="mailto:youremail@example.com">
-            <FaEnvelope />
-          </SocialIcon>
-        </SocialIcons>
-      </FooterContent>
-      <Copyright>
-        &copy; {new Date().getFullYear()} Gautam Bidari. All rights reserved.
-      </Copyright>
+      <SocialIcons>
+        <SocialIconLink href="https://github.com" target="_blank" aria-label="GitHub">
+          <FaGithub />
+        </SocialIconLink>
+        <SocialIconLink href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+          <FaLinkedin />
+        </SocialIconLink>
+        <SocialIconLink href="https://twitter.com" target="_blank" aria-label="Twitter">
+          <FaTwitter />
+        </SocialIconLink>
+        <SocialIconLink href="mailto:your.email@example.com" aria-label="Email">
+          <FaEnvelope />
+        </SocialIconLink>
+      </SocialIcons>
+      <FooterText>© {new Date().getFullYear()} Your Name. All rights reserved.</FooterText>
+      <FooterText>Built with <FooterHighlight>React</FooterHighlight></FooterText>
     </FooterContainer>
   );
 };
