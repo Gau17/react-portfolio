@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { FaCode, FaLaptopCode, FaServer, FaMicrochip, FaRobot, FaBriefcase, FaGraduationCap, FaFileDownload, FaEye, FaStar } from 'react-icons/fa';
+import { FaCode, FaLaptopCode, FaServer, FaMicrochip, FaRobot, FaBriefcase, FaGraduationCap, FaFileDownload, FaEye } from 'react-icons/fa';
 
 const AboutContainer = styled.div`
   padding: calc(1.618rem * 3) calc(1.618rem * 1.2);
@@ -82,74 +82,6 @@ const AboutParagraph = styled.p`
   letter-spacing: 0.01rem;
 `;
 
-const SkillsSection = styled.div`
-  max-width: 1200px;
-  margin: 3rem auto;
-`;
-
-const SkillsTitle = styled.h3`
-  font-size: calc(1.618rem * 1.1);
-  margin-bottom: 1.618rem;
-  color: #ffffff;
-  position: relative;
-  display: inline-block;
-  
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 60%;
-    height: 2px;
-    background: linear-gradient(90deg, #15cdfc, #5f65f9);
-    border-radius: 2px;
-  }
-`;
-
-const SkillsList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  grid-gap: 1.618rem;
-
-  @media screen and (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const SkillItem = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  border-radius: 8px;
-  background: rgba(30, 30, 30, 0.7);
-  backdrop-filter: blur(10px);
-  margin-bottom: 1rem;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    background: rgba(30, 30, 30, 0.9);
-  }
-`;
-
-const SkillIcon = styled.div`
-  font-size: 1.5rem;
-  margin-right: 1rem;
-  color: #15cdfc;
-  background: rgba(21, 205, 252, 0.1);
-  padding: 0.8rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const SkillName = styled.p`
-  font-size: 1.1rem;
-  color: #e0e0e0;
-`;
-
 const SectionContainer = styled.div`
   margin-top: calc(1.618rem * 2.5);
   max-width: 1200px;
@@ -162,12 +94,16 @@ const SectionTitle = styled.h3`
   color: #ffffff;
   position: relative;
   display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
   
   &:after {
     content: '';
     position: absolute;
     bottom: -8px;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 60%;
     height: 2px;
     background: linear-gradient(90deg, #15cdfc, #5f65f9);
@@ -385,20 +321,28 @@ const ResumeButton = styled.a`
   }
 `;
 
-const SkillRatingSection = styled.div`
+const SkillRatingContainer = styled.div`
   max-width: 1200px;
-  margin: 0 auto 3rem;
-  padding: 2rem;
-  background: rgba(30, 30, 30, 0.7);
-  border-radius: 12px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  margin: 4rem auto;
 `;
 
-const SkillRatingTitle = styled.h3`
+const SkillCategoriesGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2.5rem;
+  
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const SkillCategory = styled.div`
+  margin-bottom: 1.5rem;
+`;
+
+const CategoryHeader = styled.h3`
   font-size: calc(1.618rem * 1.1);
-  margin-bottom: 2rem;
+  margin-bottom: 1.618rem;
   color: #ffffff;
   position: relative;
   display: inline-block;
@@ -415,115 +359,118 @@ const SkillRatingTitle = styled.h3`
   }
 `;
 
-const SkillRatingsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  grid-gap: 2rem;
-  
-  @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
+const SkillBar = styled.div`
+  margin-bottom: 2rem;
 `;
 
-const SkillRatingItem = styled.div`
-  margin-bottom: 1.5rem;
-`;
-
-const SkillRatingTop = styled.div`
+const SkillInfo = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.8rem;
 `;
 
-const SkillRatingName = styled.h5`
-  font-size: 1rem;
-  font-weight: 500;
+const SkillName = styled.span`
   color: #ffffff;
+  font-size: 1rem;
   display: flex;
   align-items: center;
-  
-  svg {
-    margin-right: 0.5rem;
-    color: #15cdfc;
-  }
 `;
 
-const SkillRatingValue = styled.span`
-  font-size: 0.9rem;
+const IconWrapper = styled.span`
+  background: rgba(21, 205, 252, 0.1);
   color: #15cdfc;
-  font-weight: 600;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.8rem;
+  font-size: 1rem;
 `;
 
-const SkillRatingBarBg = styled.div`
-  height: 8px;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  position: relative;
+const SkillLevel = styled.span`
+  color: ${props => 
+    props.level === 'Expert' ? '#15cdfc' : 
+    props.level === 'Advanced' ? '#4a9aff' : 
+    props.level === 'Intermediate' ? '#2cc7b1' : 
+    '#15cda5'
+  };
+  font-size: 0.9rem;
+  font-weight: 500;
+`;
+
+const ProgressBarBg = styled.div`
+  background: rgba(255, 255, 255, 0.1);
+  height: 6px;
+  border-radius: 3px;
   overflow: hidden;
 `;
 
-const SkillRatingBar = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
+const ProgressBar = styled.div`
   height: 100%;
-  width: ${props => props.value}%;
+  width: ${props => props.animate ? 
+    (props.level === 'Expert' ? '95%' : 
+     props.level === 'Advanced' ? '80%' : 
+     props.level === 'Intermediate' ? '60%' : 
+     '40%') : '0'
+  };
   background: ${props => 
-    props.value >= 90 ? 'linear-gradient(90deg, #15cdfc, #5f65f9)' : 
-    props.value >= 75 ? 'linear-gradient(90deg, #15cdfc, #4a9aff)' : 
-    props.value >= 60 ? 'linear-gradient(90deg, #15cdfc, #2cc7b1)' : 
+    props.level === 'Expert' ? 'linear-gradient(90deg, #15cdfc, #5f65f9)' : 
+    props.level === 'Advanced' ? 'linear-gradient(90deg, #15cdfc, #4a9aff)' : 
+    props.level === 'Intermediate' ? 'linear-gradient(90deg, #15cdfc, #2cc7b1)' : 
     'linear-gradient(90deg, #15cdfc, #15cda5)'
   };
-  border-radius: 10px;
-  transition: width 1.2s ease-in-out;
+  border-radius: 3px;
+  transition: width 1.2s ease-out;
 `;
 
 const About = () => {
-  const skillRatings = [
-    { 
-      category: "Programming Languages", 
+  const [animateSkills, setAnimateSkills] = useState(false);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimateSkills(true);
+    }, 500);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  const skillData = [
+    {
+      category: "Embedded & Hardware",
       skills: [
-        { name: "C/C++", value: 95, icon: <FaCode /> },
-        { name: "Python", value: 90, icon: <FaCode /> },
-        { name: "Rust", value: 85, icon: <FaCode /> },
-        { name: "Java", value: 80, icon: <FaCode /> }
+        { name: "ARM Microcontrollers", level: "Expert", icon: <FaMicrochip /> },
+        { name: "Embedded C/C++", level: "Expert", icon: <FaCode /> },
+        { name: "Rust", level: "Advanced", icon: <FaCode /> },
+        { name: "Arduino, ESP32, nRF52840", level: "Expert", icon: <FaMicrochip /> }
       ]
     },
-    { 
-      category: "Embedded Systems", 
+    {
+      category: "IoT & Communication",
       skills: [
-        { name: "ARM (Cortex-M4/M0)", value: 95, icon: <FaMicrochip /> },
-        { name: "Device Drivers", value: 90, icon: <FaMicrochip /> },
-        { name: "RTOS", value: 85, icon: <FaMicrochip /> },
-        { name: "PCB Design", value: 75, icon: <FaMicrochip /> }
+        { name: "BLE/Thread/Matter", level: "Expert", icon: <FaLaptopCode /> },
+        { name: "SPI/I²C/UART", level: "Expert", icon: <FaLaptopCode /> },
+        { name: "RTOS", level: "Advanced", icon: <FaLaptopCode /> },
+        { name: "Device Drivers", level: "Advanced", icon: <FaMicrochip /> }
       ]
     },
-    { 
-      category: "IoT & Protocols", 
+    {
+      category: "Software & Tools",
       skills: [
-        { name: "BLE", value: 95, icon: <FaLaptopCode /> },
-        { name: "MQTT", value: 90, icon: <FaLaptopCode /> },
-        { name: "Thread/Matter", value: 85, icon: <FaLaptopCode /> },
-        { name: "SPI/I2C/UART", value: 95, icon: <FaLaptopCode /> }
+        { name: "Python", level: "Expert", icon: <FaCode /> },
+        { name: "Linux & Embedded Linux", level: "Advanced", icon: <FaServer /> },
+        { name: "Docker/CI/CD", level: "Advanced", icon: <FaServer /> },
+        { name: "Java, SQL, GCP", level: "Advanced", icon: <FaServer /> }
       ]
     },
-    { 
-      category: "Software & Tools", 
+    {
+      category: "Design & Testing",
       skills: [
-        { name: "Linux/UNIX", value: 90, icon: <FaServer /> },
-        { name: "Docker", value: 85, icon: <FaServer /> },
-        { name: "Git/CI CD", value: 90, icon: <FaServer /> },
-        { name: "Cloud (GCP/AWS)", value: 80, icon: <FaServer /> }
-      ]
-    },
-    { 
-      category: "Machine Learning", 
-      skills: [
-        { name: "TensorFlow/Keras", value: 80, icon: <FaRobot /> },
-        { name: "OpenCV", value: 75, icon: <FaRobot /> },
-        { name: "Time Series", value: 85, icon: <FaRobot /> },
-        { name: "Edge AI", value: 80, icon: <FaRobot /> }
+        { name: "KiCad PCB Design", level: "Advanced", icon: <FaMicrochip /> },
+        { name: "JTAG Debugging", level: "Expert", icon: <FaLaptopCode /> },
+        { name: "TDD & Unity Testing", level: "Advanced", icon: <FaCode /> },
+        { name: "TensorFlow, OpenCV", level: "Intermediate", icon: <FaRobot /> }
       ]
     }
   ];
@@ -668,76 +615,34 @@ const About = () => {
           </ResumeButtons>
         </ResumeContent>
       </ResumeSection>
-      
-      <SkillRatingSection>
-        <SkillRatingTitle>Skills Proficiency</SkillRatingTitle>
-        {skillRatings.map((category, index) => (
-          <div key={index}>
-            <h4 style={{ fontSize: '1.2rem', color: '#ffffff', margin: '1.5rem 0 1rem', 
-                         borderLeft: '3px solid #15cdfc', paddingLeft: '0.8rem' }}>
-              {category.category}
-            </h4>
-            <SkillRatingsGrid>
-              {category.skills.map((skill, idx) => (
-                <SkillRatingItem key={idx}>
-                  <SkillRatingTop>
-                    <SkillRatingName>
-                      {skill.icon} {skill.name}
-                    </SkillRatingName>
-                    <SkillRatingValue>{skill.value}%</SkillRatingValue>
-                  </SkillRatingTop>
-                  <SkillRatingBarBg>
-                    <SkillRatingBar value={skill.value} />
-                  </SkillRatingBarBg>
-                </SkillRatingItem>
-              ))}
-            </SkillRatingsGrid>
-          </div>
-        ))}
-      </SkillRatingSection>
-      
-      <SkillsSection>
-        <SkillsTitle>Technical Skills</SkillsTitle>
-        <SkillsList>
-          <SkillItem>
-            <SkillIcon>
-              <FaMicrochip />
-            </SkillIcon>
-            <SkillName>nRF52840, ESP32, Arduino</SkillName>
-          </SkillItem>
-          <SkillItem>
-            <SkillIcon>
-              <FaCode />
-            </SkillIcon>
-            <SkillName>C/C++, Rust, Python</SkillName>
-          </SkillItem>
-          <SkillItem>
-            <SkillIcon>
-              <FaLaptopCode />
-            </SkillIcon>
-            <SkillName>SPI, I2C, JTAG, BLE, RTOS</SkillName>
-          </SkillItem>
-          <SkillItem>
-            <SkillIcon>
-              <FaServer />
-            </SkillIcon>
-            <SkillName>Java, SQL, Docker</SkillName>
-          </SkillItem>
-          <SkillItem>
-            <SkillIcon>
-              <FaRobot />
-            </SkillIcon>
-            <SkillName>TensorFlow, OpenCV</SkillName>
-          </SkillItem>
-          <SkillItem>
-            <SkillIcon>
-              <FaServer />
-            </SkillIcon>
-            <SkillName>Cloud Computing (GCP)</SkillName>
-          </SkillItem>
-        </SkillsList>
-      </SkillsSection>
 
+      <SkillRatingContainer>
+        <SectionTitle>Technical Expertise</SectionTitle>
+        
+        <SkillCategoriesGrid>
+          {skillData.map((category, index) => (
+            <SkillCategory key={index}>
+              <CategoryHeader>{category.category}</CategoryHeader>
+              
+              {category.skills.map((skill, idx) => (
+                <SkillBar key={idx}>
+                  <SkillInfo>
+                    <SkillName>
+                      <IconWrapper>{skill.icon}</IconWrapper>
+                      {skill.name}
+                    </SkillName>
+                    <SkillLevel level={skill.level}>{skill.level}</SkillLevel>
+                  </SkillInfo>
+                  <ProgressBarBg>
+                    <ProgressBar animate={animateSkills} level={skill.level} />
+                  </ProgressBarBg>
+                </SkillBar>
+              ))}
+            </SkillCategory>
+          ))}
+        </SkillCategoriesGrid>
+      </SkillRatingContainer>
+      
       <SectionContainer>
         <SectionTitle>Work Experience</SectionTitle>
         <Timeline>
