@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaTimes, FaFilter } from 'react-icons/fa';
 
 const ProjectsContainer = styled.div`
   padding: 5rem 2rem;
@@ -10,7 +10,7 @@ const ProjectsContainer = styled.div`
 const ProjectsTitle = styled.h2`
   font-size: 2.5rem;
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   color: #ffffff;
 `;
 
@@ -109,8 +109,90 @@ const ProjectDate = styled.p`
   margin-bottom: 0.75rem;
 `;
 
+const FilterContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const TagsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+`;
+
+const FilterTag = styled.button`
+  background: ${props => (props.active ? 'rgba(21, 205, 252, 0.25)' : 'rgba(30, 30, 30, 0.7)')};
+  color: ${props => (props.active ? '#15cdfc' : '#a0a0a0')};
+  border: 1px solid ${props => (props.active ? '#15cdfc' : 'rgba(255, 255, 255, 0.1)')};
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: rgba(21, 205, 252, 0.15);
+    color: #15cdfc;
+    border-color: #15cdfc;
+  }
+`;
+
+const ActiveFiltersContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+`;
+
+const ActiveFilter = styled.div`
+  display: flex;
+  align-items: center;
+  background: rgba(21, 205, 252, 0.15);
+  color: #15cdfc;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  
+  svg {
+    margin-left: 0.5rem;
+    cursor: pointer;
+    font-size: 0.75rem;
+    
+    &:hover {
+      color: #ffffff;
+    }
+  }
+`;
+
+const ClearFiltersButton = styled.button`
+  background: none;
+  color: #a0a0a0;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: underline;
+  
+  &:hover {
+    color: #ffffff;
+  }
+`;
+
+const NoResultsMessage = styled.div`
+  text-align: center;
+  padding: 3rem;
+  color: #a0a0a0;
+  font-size: 1.1rem;
+  grid-column: 1 / -1;
+`;
+
 const Projects = () => {
-  // Project data based on Gautam's specific projects
   const projects = [
     {
       id: 1,
@@ -204,39 +286,133 @@ const Projects = () => {
     },
   ];
 
+  const categories = [
+    { name: "Embedded Systems", tags: ["Embedded Security", "Raspberry Pi", "ESP32", "Arduino Nano", "MAX78000", "Hardware Security", "GPIO", "SPI", "I2C", "ChaCha20Poly1305", "SHA512 HKDF"] },
+    { name: "IoT", tags: ["IoT", "Matter", "Thread", "BLE", "MQTT", "Healthcare IoT", "Remote Monitoring"] },
+    { name: "Networking", tags: ["Network Design", "OSPF", "EIGRP", "VLANs", "ACLs", "Cisco", "DHCP", "DNS", "BIND9", "IPSec VPN"] },
+    { name: "Software Development", tags: ["Rust", "Linux Device Drivers", "Yocto", "Python", "Redis", "Apache2"] },
+    { name: "Data Science", tags: ["Time Series", "Forecasting", "ARIMA", "SARIMA", "XGBoost", "Edge AI"] },
+    { name: "Signal Processing", tags: ["Digital Signal Processing", "FFT", "DWT", "Audio Fingerprinting", "Synchronization"] },
+    { name: "Mobile Development", tags: ["Android App"] },
+  ];
+  
+  const [selectedFilters, setSelectedFilters] = useState([]);
+  const [filteredProjects, setFilteredProjects] = useState(projects);
+
+  useEffect(() => {
+    if (selectedFilters.length === 0) {
+      setFilteredProjects(projects);
+    } else {
+      const filtered = projects.filter(project => {
+        return project.tech.some(tech => selectedFilters.includes(tech)) ||
+               selectedFilters.some(filter => {
+                 const category = categories.find(cat => cat.name === filter);
+                 if (!category) return false;
+                 return project.tech.some(tech => category.tags.includes(tech));
+               });
+      });
+      setFilteredProjects(filtered);
+    }
+  }, [selectedFilters]);
+
+  const getAllUniqueTags = () => {
+    const uniqueTags = new Set();
+    projects.forEach(project => {
+      project.tech.forEach(tech => uniqueTags.add(tech));
+    });
+    return Array.from(uniqueTags).sort();
+  };
+
+  const toggleFilter = (tag) => {
+    if (selectedFilters.includes(tag)) {
+      setSelectedFilters(selectedFilters.filter(filter => filter !== tag));
+    } else {
+      setSelectedFilters([...selectedFilters, tag]);
+    }
+  };
+
+  const removeFilter = (tag) => {
+    setSelectedFilters(selectedFilters.filter(filter => filter !== tag));
+  };
+
+  const clearFilters = () => {
+    setSelectedFilters([]);
+  };
+
   return (
     <ProjectsContainer>
       <ProjectsTitle>My Projects</ProjectsTitle>
+      
+      <FilterContainer>        
+        <TagsContainer>
+          {categories.map((category, index) => (
+            <FilterTag
+              key={index}
+              active={selectedFilters.includes(category.name)}
+              onClick={() => toggleFilter(category.name)}
+            >
+              {category.name}
+            </FilterTag>
+          ))}
+        </TagsContainer>
+        
+        {selectedFilters.length > 0 && (
+          <ActiveFiltersContainer>
+            {selectedFilters.map((filter, index) => (
+              <ActiveFilter key={index}>
+                {filter}
+                <FaTimes onClick={() => removeFilter(filter)} />
+              </ActiveFilter>
+            ))}
+            <ClearFiltersButton onClick={clearFilters}>
+              Clear all filters
+            </ClearFiltersButton>
+          </ActiveFiltersContainer>
+        )}
+      </FilterContainer>
+      
       <ProjectsWrapper>
-        {projects.map((project) => (
-          <ProjectCard key={project.id}>
-            <ProjectImage bg={project.image} />
-            <ProjectInfo>
-              <ProjectTitle>{project.title}</ProjectTitle>
-              <ProjectDate>{project.date}</ProjectDate>
-              <ProjectDescription>{project.description}</ProjectDescription>
-              <ProjectTech>
-                {project.tech.map((tech, index) => (
-                  <TechTag key={index}>{tech}</TechTag>
-                ))}
-              </ProjectTech>
-              <ProjectLinks>
-                <ProjectLink href={project.github} target="_blank" rel="noopener noreferrer">
-                  <LinkIcon>
-                    <FaGithub />
-                  </LinkIcon>
-                  Code
-                </ProjectLink>
-                <ProjectLink href={project.demo} target="_blank" rel="noopener noreferrer">
-                  <LinkIcon>
-                    <FaExternalLinkAlt />
-                  </LinkIcon>
-                  Details
-                </ProjectLink>
-              </ProjectLinks>
-            </ProjectInfo>
-          </ProjectCard>
-        ))}
+        {filteredProjects.length > 0 ? (
+          filteredProjects.map((project) => (
+            <ProjectCard key={project.id}>
+              <ProjectImage bg={project.image} />
+              <ProjectInfo>
+                <ProjectTitle>{project.title}</ProjectTitle>
+                <ProjectDate>{project.date}</ProjectDate>
+                <ProjectDescription>{project.description}</ProjectDescription>
+                <ProjectTech>
+                  {project.tech.map((tech, index) => (
+                    <TechTag 
+                      key={index}
+                      onClick={() => toggleFilter(tech)}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      {tech}
+                    </TechTag>
+                  ))}
+                </ProjectTech>
+                <ProjectLinks>
+                  <ProjectLink href={project.github} target="_blank" rel="noopener noreferrer">
+                    <LinkIcon>
+                      <FaGithub />
+                    </LinkIcon>
+                    Code
+                  </ProjectLink>
+                  <ProjectLink href={project.demo} target="_blank" rel="noopener noreferrer">
+                    <LinkIcon>
+                      <FaExternalLinkAlt />
+                    </LinkIcon>
+                    Details
+                  </ProjectLink>
+                </ProjectLinks>
+              </ProjectInfo>
+            </ProjectCard>
+          ))
+        ) : (
+          <NoResultsMessage>
+            No projects match the selected filters. Try selecting different filters.
+          </NoResultsMessage>
+        )}
       </ProjectsWrapper>
     </ProjectsContainer>
   );
