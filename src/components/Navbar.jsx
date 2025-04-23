@@ -13,27 +13,51 @@ const Nav = styled.nav`
   z-index: 10;
   position: sticky;
   top: 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 100%;
 `;
 
-const Logo = styled(Link)`
-  color: #fff;
+const NavbarContainer = styled.div`
   display: flex;
-  align-items: center;
-  text-decoration: none;
-  padding: 0 1rem;
-  height: 100%;
+  justify-content: space-between;
+  height: 80px;
+  z-index: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+`;
+
+const NavLogo = styled(Link)`
+  color: #fff;
+  justify-self: flex-start;
   cursor: pointer;
   font-size: 1.5rem;
-  font-weight: bold;
-`;
-
-const NavMenu = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 24px;
+  margin-left: 24px;
+  font-weight: bold;
+  text-decoration: none;
+`;
+
+const NavMenu = styled.ul`
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+  margin-right: -22px;
 
   @media screen and (max-width: 768px) {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 80px);
+    position: absolute;
+    top: 80px;
+    left: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
+    opacity: 1;
+    transition: all 0.5s ease;
+    background: #000;
   }
 `;
 
@@ -79,7 +103,7 @@ const MobileIcon = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    transform: translate(-100%, 75%);
+    transform: translate(-100%, 60%);
     font-size: 1.8rem;
     cursor: pointer;
     color: #fff;
@@ -91,12 +115,15 @@ const MobileMenu = styled.div`
   flex-direction: column;
   width: 100%;
   height: 90vh;
-  position: absolute;
+  position: fixed;
   top: 80px;
   left: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
   opacity: 1;
   transition: all 0.5s ease;
   background: #1a1a1a;
+  z-index: 9999;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
 `;
 
 const MobileLink = styled(Link)`
@@ -142,26 +169,53 @@ const Navbar = () => {
   return (
     <>
       <Nav>
-        <Logo to="/">GAUTAM BIDARI</Logo>
-        <MobileIcon onClick={toggle}>
-          {isOpen ? <FaTimes /> : <FaBars />}
-        </MobileIcon>
-        <NavMenu>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/projects">Projects</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
-          <ResumeLink href={process.env.PUBLIC_URL + "/resume.pdf"} target="_blank" rel="noopener noreferrer">
-            <FaFileAlt /> Resume
-          </ResumeLink>
-        </NavMenu>
+        <NavbarContainer>
+          <NavLogo to="/">GAUTAM BIDARI</NavLogo>
+          <MobileIcon onClick={toggle}>
+            {isOpen ? <FaTimes aria-hidden="true" /> : <FaBars aria-hidden="true" />}
+            <span
+              className="sr-only"
+              style={{
+                position: 'absolute',
+                width: '1px',
+                height: '1px',
+                padding: '0',
+                margin: '-1px',
+                overflow: 'hidden',
+                clip: 'rect(0, 0, 0, 0)',
+                whiteSpace: 'nowrap',
+                borderWidth: '0',
+              }}
+            >
+              {isOpen ? 'Close menu' : 'Open menu'}
+            </span>
+          </MobileIcon>
+          <NavMenu isOpen={isOpen} role="navigation" aria-label="Main navigation">
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/about">About</NavLink>
+            <NavLink to="/projects">Projects</NavLink>
+            <NavLink to="/contact">Contact</NavLink>
+            <ResumeLink
+              href={process.env.PUBLIC_URL + "/resume.pdf"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFileAlt /> Resume
+            </ResumeLink>
+          </NavMenu>
+        </NavbarContainer>
       </Nav>
       <MobileMenu isOpen={isOpen}>
         <MobileLink to="/" onClick={toggle}>Home</MobileLink>
         <MobileLink to="/about" onClick={toggle}>About</MobileLink>
         <MobileLink to="/projects" onClick={toggle}>Projects</MobileLink>
         <MobileLink to="/contact" onClick={toggle}>Contact</MobileLink>
-        <MobileResumeLink href={process.env.PUBLIC_URL + "/resume.pdf"} target="_blank" rel="noopener noreferrer" onClick={toggle}>
+        <MobileResumeLink
+          href={process.env.PUBLIC_URL + "/resume.pdf"}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={toggle}
+        >
           <FaFileAlt /> Resume
         </MobileResumeLink>
       </MobileMenu>

@@ -5,6 +5,10 @@ import { FaGithub, FaExternalLinkAlt, FaTimes, FaFilter } from 'react-icons/fa';
 const ProjectsContainer = styled.div`
   padding: 5rem 2rem;
   background: #121212;
+  
+  @media screen and (max-width: 768px) {
+    padding: 3rem 1rem;
+  }
 `;
 
 const ProjectsTitle = styled.h2`
@@ -18,23 +22,35 @@ const ProjectsWrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 2rem;
+
+  @media screen and (max-width: 768px) {
+    grid-gap: 1.5rem;
+  }
 
   @media screen and (max-width: 400px) {
     grid-template-columns: 1fr;
+    padding: 0 0.5rem;
+    grid-gap: 1.25rem;
   }
 `;
 
 const ProjectCard = styled.div`
   background: #1e1e1e;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    border-color: rgba(21, 205, 252, 0.3);
   }
 `;
 
@@ -44,10 +60,24 @@ const ProjectImage = styled.div`
   background-image: ${({ bg }) => (bg ? `url(${bg})` : 'none')};
   background-size: cover;
   background-position: center;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(to top, #1e1e1e, transparent);
+  }
 `;
 
 const ProjectInfo = styled.div`
   padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ProjectTitle = styled.h3`
@@ -61,6 +91,7 @@ const ProjectDescription = styled.p`
   color: #e0e0e0;
   line-height: 1.6;
   margin-bottom: 1.5rem;
+  flex: 1;
 `;
 
 const ProjectTech = styled.div`
@@ -81,6 +112,7 @@ const TechTag = styled.span`
 
 const ProjectLinks = styled.div`
   display: flex;
+  margin-top: auto;
 `;
 
 const ProjectLink = styled.a`
@@ -91,9 +123,18 @@ const ProjectLink = styled.a`
   font-size: 0.9rem;
   font-weight: 500;
   margin-right: 1.5rem;
+  padding: 0.5rem 0;
+  transition: all 0.2s ease;
   
   &:hover {
     color: #15cdfc;
+    transform: translateY(-2px);
+  }
+
+  &:focus {
+    outline: 2px solid #15cdfc;
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 `;
 
@@ -115,6 +156,10 @@ const FilterContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+  @media screen and (max-width: 768px) {
+    margin-bottom: 2rem;
+  }
 `;
 
 const TagsContainer = styled.div`
@@ -123,6 +168,10 @@ const TagsContainer = styled.div`
   gap: 0.75rem;
   margin-bottom: 1.5rem;
   justify-content: center;
+  
+  @media screen and (max-width: 768px) {
+    gap: 0.5rem;
+  }
 `;
 
 const FilterTag = styled.button`
@@ -139,6 +188,16 @@ const FilterTag = styled.button`
     background: rgba(21, 205, 252, 0.15);
     color: #15cdfc;
     border-color: #15cdfc;
+  }
+  
+  &:focus {
+    outline: 2px solid #15cdfc;
+    outline-offset: 2px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
   }
 `;
 
@@ -340,7 +399,7 @@ const Projects = () => {
   };
 
   return (
-    <ProjectsContainer>
+    <ProjectsContainer id="projects">
       <ProjectsTitle>My Projects</ProjectsTitle>
       
       <FilterContainer>        
@@ -350,6 +409,7 @@ const Projects = () => {
               key={index}
               active={selectedFilters.includes(category.name)}
               onClick={() => toggleFilter(category.name)}
+              aria-pressed={selectedFilters.includes(category.name)}
             >
               {category.name}
             </FilterTag>
@@ -361,7 +421,7 @@ const Projects = () => {
             {selectedFilters.map((filter, index) => (
               <ActiveFilter key={index}>
                 {filter}
-                <FaTimes onClick={() => removeFilter(filter)} />
+                <FaTimes onClick={() => removeFilter(filter)} aria-label={`Remove ${filter} filter`} />
               </ActiveFilter>
             ))}
             <ClearFiltersButton onClick={clearFilters}>
@@ -375,20 +435,14 @@ const Projects = () => {
         {filteredProjects.length > 0 ? (
           filteredProjects.map((project) => (
             <ProjectCard key={project.id}>
-              <ProjectImage bg={project.image} />
+              <ProjectImage bg={project.image} role="img" aria-label={`Project: ${project.title}`} />
               <ProjectInfo>
                 <ProjectTitle>{project.title}</ProjectTitle>
                 <ProjectDate>{project.date}</ProjectDate>
                 <ProjectDescription>{project.description}</ProjectDescription>
                 <ProjectTech>
                   {project.tech.map((tech, index) => (
-                    <TechTag 
-                      key={index}
-                      onClick={() => toggleFilter(tech)}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      {tech}
-                    </TechTag>
+                    <TechTag key={index}>{tech}</TechTag>
                   ))}
                 </ProjectTech>
                 <ProjectLinks>
@@ -398,12 +452,14 @@ const Projects = () => {
                     </LinkIcon>
                     Code
                   </ProjectLink>
-                  <ProjectLink href={project.demo} target="_blank" rel="noopener noreferrer">
-                    <LinkIcon>
-                      <FaExternalLinkAlt />
-                    </LinkIcon>
-                    Details
-                  </ProjectLink>
+                  {project.demo && (
+                    <ProjectLink href={project.demo} target="_blank" rel="noopener noreferrer">
+                      <LinkIcon>
+                        <FaExternalLinkAlt />
+                      </LinkIcon>
+                      Demo
+                    </ProjectLink>
+                  )}
                 </ProjectLinks>
               </ProjectInfo>
             </ProjectCard>

@@ -17,6 +17,14 @@ const ContactContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  
+  @media screen and (max-width: 768px) {
+    padding: 4rem 1.5rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    padding: 3rem 1rem;
+  }
 `;
 
 const ContactTitle = styled.h2`
@@ -69,6 +77,10 @@ const SocialLinkCard = styled.a`
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(21, 205, 252, 0.3);
     background: rgba(30, 30, 30, 0.9);
+  }
+  
+  @media screen and (max-width: 480px) {
+    padding: 1.2rem;
   }
 `;
 
