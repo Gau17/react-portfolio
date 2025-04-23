@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaCode, FaLaptopCode, FaServer, FaMicrochip, FaRobot, FaBriefcase, FaGraduationCap, FaFileDownload, FaEye } from 'react-icons/fa';
+import { FaCode, FaLaptopCode, FaServer, FaMicrochip, FaRobot, FaBriefcase, FaGraduationCap, FaFileDownload, FaEye, FaStar } from 'react-icons/fa';
 
 const AboutContainer = styled.div`
   padding: calc(1.618rem * 3) calc(1.618rem * 1.2);
@@ -385,7 +385,149 @@ const ResumeButton = styled.a`
   }
 `;
 
+const SkillRatingSection = styled.div`
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  padding: 2rem;
+  background: rgba(30, 30, 30, 0.7);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+`;
+
+const SkillRatingTitle = styled.h3`
+  font-size: calc(1.618rem * 1.1);
+  margin-bottom: 2rem;
+  color: #ffffff;
+  position: relative;
+  display: inline-block;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(90deg, #15cdfc, #5f65f9);
+    border-radius: 2px;
+  }
+`;
+
+const SkillRatingsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-gap: 2rem;
+  
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const SkillRatingItem = styled.div`
+  margin-bottom: 1.5rem;
+`;
+
+const SkillRatingTop = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.7rem;
+`;
+
+const SkillRatingName = styled.h5`
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  
+  svg {
+    margin-right: 0.5rem;
+    color: #15cdfc;
+  }
+`;
+
+const SkillRatingValue = styled.span`
+  font-size: 0.9rem;
+  color: #15cdfc;
+  font-weight: 600;
+`;
+
+const SkillRatingBarBg = styled.div`
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+`;
+
+const SkillRatingBar = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: ${props => props.value}%;
+  background: ${props => 
+    props.value >= 90 ? 'linear-gradient(90deg, #15cdfc, #5f65f9)' : 
+    props.value >= 75 ? 'linear-gradient(90deg, #15cdfc, #4a9aff)' : 
+    props.value >= 60 ? 'linear-gradient(90deg, #15cdfc, #2cc7b1)' : 
+    'linear-gradient(90deg, #15cdfc, #15cda5)'
+  };
+  border-radius: 10px;
+  transition: width 1.2s ease-in-out;
+`;
+
 const About = () => {
+  const skillRatings = [
+    { 
+      category: "Programming Languages", 
+      skills: [
+        { name: "C/C++", value: 95, icon: <FaCode /> },
+        { name: "Python", value: 90, icon: <FaCode /> },
+        { name: "Rust", value: 85, icon: <FaCode /> },
+        { name: "Java", value: 80, icon: <FaCode /> }
+      ]
+    },
+    { 
+      category: "Embedded Systems", 
+      skills: [
+        { name: "ARM (Cortex-M4/M0)", value: 95, icon: <FaMicrochip /> },
+        { name: "Device Drivers", value: 90, icon: <FaMicrochip /> },
+        { name: "RTOS", value: 85, icon: <FaMicrochip /> },
+        { name: "PCB Design", value: 75, icon: <FaMicrochip /> }
+      ]
+    },
+    { 
+      category: "IoT & Protocols", 
+      skills: [
+        { name: "BLE", value: 95, icon: <FaLaptopCode /> },
+        { name: "MQTT", value: 90, icon: <FaLaptopCode /> },
+        { name: "Thread/Matter", value: 85, icon: <FaLaptopCode /> },
+        { name: "SPI/I2C/UART", value: 95, icon: <FaLaptopCode /> }
+      ]
+    },
+    { 
+      category: "Software & Tools", 
+      skills: [
+        { name: "Linux/UNIX", value: 90, icon: <FaServer /> },
+        { name: "Docker", value: 85, icon: <FaServer /> },
+        { name: "Git/CI CD", value: 90, icon: <FaServer /> },
+        { name: "Cloud (GCP/AWS)", value: 80, icon: <FaServer /> }
+      ]
+    },
+    { 
+      category: "Machine Learning", 
+      skills: [
+        { name: "TensorFlow/Keras", value: 80, icon: <FaRobot /> },
+        { name: "OpenCV", value: 75, icon: <FaRobot /> },
+        { name: "Time Series", value: 85, icon: <FaRobot /> },
+        { name: "Edge AI", value: 80, icon: <FaRobot /> }
+      ]
+    }
+  ];
+
   const experiences = [
     {
       id: 1,
@@ -526,6 +668,33 @@ const About = () => {
           </ResumeButtons>
         </ResumeContent>
       </ResumeSection>
+      
+      <SkillRatingSection>
+        <SkillRatingTitle>Skills Proficiency</SkillRatingTitle>
+        {skillRatings.map((category, index) => (
+          <div key={index}>
+            <h4 style={{ fontSize: '1.2rem', color: '#ffffff', margin: '1.5rem 0 1rem', 
+                         borderLeft: '3px solid #15cdfc', paddingLeft: '0.8rem' }}>
+              {category.category}
+            </h4>
+            <SkillRatingsGrid>
+              {category.skills.map((skill, idx) => (
+                <SkillRatingItem key={idx}>
+                  <SkillRatingTop>
+                    <SkillRatingName>
+                      {skill.icon} {skill.name}
+                    </SkillRatingName>
+                    <SkillRatingValue>{skill.value}%</SkillRatingValue>
+                  </SkillRatingTop>
+                  <SkillRatingBarBg>
+                    <SkillRatingBar value={skill.value} />
+                  </SkillRatingBarBg>
+                </SkillRatingItem>
+              ))}
+            </SkillRatingsGrid>
+          </div>
+        ))}
+      </SkillRatingSection>
       
       <SkillsSection>
         <SkillsTitle>Technical Skills</SkillsTitle>
