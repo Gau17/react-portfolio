@@ -1,4 +1,4 @@
-# Gautam Bidari - Portfolio Website
+# Personal Portfolio Website
 
 This repository contains my personal portfolio website built with React, showcasing my skills, projects, and professional experience in embedded systems and IoT development.
 
