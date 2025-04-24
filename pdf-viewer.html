@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume - Gautam Bidari</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    #pdf-container {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    #pdf-viewer {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .header {
+      background-color: #1a1a1a;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header a {
+      color: white;
+      text-decoration: none;
+    }
+    .download-btn {
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="pdf-container">
+    <div class="header">
+      <a href="/">← Back to Portfolio</a>
+      <a href="resume.pdf" download="Gautam_Bidari_Resume.pdf" class="download-btn">Download PDF</a>
+    </div>
+    <object id="pdf-viewer" data="resume.pdf" type="application/pdf">
+      <embed src="resume.pdf" type="application/pdf" />
+      <p>Your browser doesn't support embedded PDFs. <a href="resume.pdf">Click here to download the PDF</a>.</p>
+    </object>
+  </div>
+  <script>
+    // If object tag doesn't work properly on some mobile devices, create an iframe fallback
+    const pdfViewer = document.getElementById('pdf-viewer');
+    pdfViewer.addEventListener('error', function() {
+      const iframe = document.createElement('iframe');
+      iframe.src = 'resume.pdf';
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+      iframe.style.border = 'none';
+      pdfViewer.parentNode.replaceChild(iframe, pdfViewer);
+    });
+  </script>
+</body>
+</html>
