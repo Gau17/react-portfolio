@@ -609,7 +609,7 @@ const About = () => {
             <ResumeButton primary href={process.env.PUBLIC_URL + "/resume.pdf"} download="Gautam_Bidari_Resume.pdf">
               <FaFileDownload /> Download Resume
             </ResumeButton>
-            <ResumeButton href={process.env.PUBLIC_URL + "/resume.pdf"} target="_blank" rel="noopener noreferrer">
+            <ResumeButton href={process.env.PUBLIC_URL + "/pdf-viewer.html"} target="_blank" rel="noopener noreferrer">
               <FaEye /> View Resume
             </ResumeButton>
           </ResumeButtons>
