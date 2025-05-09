@@ -194,6 +194,7 @@ const Navbar = () => {
             <NavLink to="/">Home</NavLink>
             <NavLink to="/about">About</NavLink>
             <NavLink to="/projects">Projects</NavLink>
+            <NavLink to="/achievements">Achievements</NavLink>
             <NavLink to="/contact">Contact</NavLink>
             <ResumeLink
               href={process.env.PUBLIC_URL + "/pdf-viewer.html"}
@@ -209,6 +210,7 @@ const Navbar = () => {
         <MobileLink to="/" onClick={toggle}>Home</MobileLink>
         <MobileLink to="/about" onClick={toggle}>About</MobileLink>
         <MobileLink to="/projects" onClick={toggle}>Projects</MobileLink>
+        <MobileLink to="/achievements" onClick={toggle}>Achievements</MobileLink>
         <MobileLink to="/contact" onClick={toggle}>Contact</MobileLink>
         <MobileResumeLink
           href={process.env.PUBLIC_URL + "/pdf-viewer.html"}

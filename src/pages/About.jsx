@@ -438,24 +438,12 @@ const About = () => {
 
   const skillData = [
     {
-      category: "Software & Tools",
-      skills: [
-        { name: "Embedded C/C++", level: "Expert", icon: <FaServer /> },
-        { name: "Python", level: "Expert", icon: <FaCode /> },        
-        { name: "Java, SQL, GCP", level: "Advanced", icon: <FaServer /> },
-        { name: "Rust", level: "Intermediate", icon: <FaCode /> },
-        { name: "TensorFlow, OpenCV", level: "Intermediate", icon: <FaRobot /> }
-
-      ]
-    },
-    {
       category: "Embedded & Hardware",
       skills: [
         { name: "ARM Microcontrollers", level: "Expert", icon: <FaMicrochip /> },
-        { name: "Arduino, ESP32, nRF52840", level: "Expert", icon: <FaMicrochip /> },
-        { name: "Linux & Embedded Linux", level: "Advanced", icon: <FaServer /> },
-        { name: "Device Drivers", level: "Advanced", icon: <FaMicrochip /> },
-        { name: "JTAG Debugging", level: "Expert", icon: <FaLaptopCode /> }
+        { name: "Embedded C/C++", level: "Expert", icon: <FaCode /> },
+        { name: "Rust", level: "Advanced", icon: <FaCode /> },
+        { name: "Arduino, ESP32, nRF52840", level: "Expert", icon: <FaMicrochip /> }
       ]
     },
     {
@@ -463,15 +451,26 @@ const About = () => {
       skills: [
         { name: "BLE/Thread/Matter", level: "Expert", icon: <FaLaptopCode /> },
         { name: "SPI/I²C/UART", level: "Expert", icon: <FaLaptopCode /> },
-        { name: "RTOS", level: "Advanced", icon: <FaLaptopCode /> }
+        { name: "RTOS", level: "Advanced", icon: <FaLaptopCode /> },
+        { name: "Device Drivers", level: "Advanced", icon: <FaMicrochip /> }
       ]
     },
-    
+    {
+      category: "Software & Tools",
+      skills: [
+        { name: "Python", level: "Expert", icon: <FaCode /> },
+        { name: "Linux & Embedded Linux", level: "Advanced", icon: <FaServer /> },
+        { name: "Docker/CI/CD", level: "Advanced", icon: <FaServer /> },
+        { name: "Java, SQL, GCP", level: "Advanced", icon: <FaServer /> }
+      ]
+    },
     {
       category: "Design & Testing",
       skills: [
-        { name: "KiCad PCB Design", level: "Intermediate", icon: <FaMicrochip /> },
-        { name: "TDD & Unity Testing", level: "Advanced", icon: <FaCode /> }
+        { name: "KiCad PCB Design", level: "Advanced", icon: <FaMicrochip /> },
+        { name: "JTAG Debugging", level: "Expert", icon: <FaLaptopCode /> },
+        { name: "TDD & Unity Testing", level: "Advanced", icon: <FaCode /> },
+        { name: "TensorFlow, OpenCV", level: "Intermediate", icon: <FaRobot /> }
       ]
     }
   ];
@@ -548,7 +547,7 @@ const About = () => {
       institution: "Northeastern University",
       date: "September 2023 - August 2025",
       grade: "Grade: 4.0",
-      // activities: "Activities: President - IoT Connect Club (Spring 2025)",
+      activities: "Activities: President - IoT Connect Club (Spring 2025)",
       courses: [
         "Fundamentals of Internet of Things (TELE 6510)",
         "Data Networking (TELE 5330)",
@@ -558,17 +557,6 @@ const About = () => {
         "Software Security and Vulnerability (CY5770)",
         "Computer Hardware Security (EECE 7390)",
         "Embedded Device Drivers and Rust (TELE 7374)"
-      ]
-    },
-    {
-      id: 2,
-      degree: "Bachelor of Technology - B.Tech, Electronics and Communication Engineering",
-      institution: "Visvesvaraya National Institute of Technology (NIT Nagpur)",
-      date: "July 2018 - May 2022",
-      courses: [
-        "Embedded Systems", 
-        "Operating Systems", 
-        "Object-Oriented Programming"
       ]
     }
   ];
@@ -688,9 +676,9 @@ const About = () => {
         <Timeline>
           {education.map((edu, index) => (
             <TimelineItem 
-            key={edu.id} 
-            position={index % 2 === 0 ? 'left' : 'right'}
-          >
+              key={edu.id} 
+              position="left"
+            >
               <TimelineContent>
                 <TimelineTitle>{edu.degree}</TimelineTitle>
                 <TimelineCompany>{edu.institution}</TimelineCompany>
@@ -704,7 +692,7 @@ const About = () => {
                   ))}
                 </TimelineDescription>
               </TimelineContent>
-              <TimelineDot position={index % 2 === 0 ? 'left' : 'right'}>
+              <TimelineDot position="left">
                 <TimelineIcon>
                   <FaGraduationCap />
                 </TimelineIcon>
