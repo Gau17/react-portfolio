@@ -332,7 +332,7 @@ const Achievements = () => {
     nextArrow: <NextArrow show={images.length > 1} />,
     prevArrow: <PrevArrow show={images.length > 1} />,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 2000,
   });
 
   return (

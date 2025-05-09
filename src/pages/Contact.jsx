@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { 
   FaEnvelope, 
-  FaPhone, 
-  FaMapMarkerAlt, 
   FaGithub, 
   FaLinkedin, 
   FaYoutube,
@@ -147,34 +145,6 @@ const ContactText = styled.p`
   font-size: 1.1rem;
   line-height: 1.8;
   margin-bottom: 2rem;
-  color: #e0e0e0;
-`;
-
-const ContactDetail = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
-
-const ContactIcon = styled.span`
-  font-size: 1.5rem;
-  color: #15cdfc;
-  margin-right: 1rem;
-  width: 40px;
-  height: 40px;
-  background: rgba(21, 205, 252, 0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ContactInfoText = styled.p`
-  font-size: 1rem;
   color: #e0e0e0;
 `;
 

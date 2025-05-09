@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
-import { FaGithub, FaExternalLinkAlt, FaTimes, FaFilter } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaTimes } from 'react-icons/fa';
 
 const ProjectsContainer = styled.div`
   padding: 5rem 2rem;
@@ -252,7 +252,7 @@ const NoResultsMessage = styled.div`
 `;
 
 const Projects = () => {
-  const projects = [
+  const projects = useMemo(() => [
     {
       id: 1,
       title: 'Embedded Linux Device Driver Development',
@@ -343,9 +343,9 @@ const Projects = () => {
       demo: 'https://drive.google.com/file/d/1DDVhYUej-ciNVQxkOFRwRMLbjFDIWOSo/view?usp=sharing',
       image: `${process.env.PUBLIC_URL}/images/projects/smart-mask.jpg`,
     },
-  ];
+  ], []);
 
-  const categories = [
+  const categories = useMemo(() => [
     { name: "Embedded Systems", tags: ["Embedded Security", "Raspberry Pi", "ESP32", "Arduino Nano", "MAX78000", "Hardware Security", "GPIO", "SPI", "I2C", "ChaCha20Poly1305", "SHA512 HKDF"] },
     { name: "IoT", tags: ["IoT", "Matter", "Thread", "BLE", "MQTT", "Healthcare IoT", "Remote Monitoring"] },
     { name: "Networking", tags: ["Network Design", "OSPF", "EIGRP", "VLANs", "ACLs", "Cisco", "DHCP", "DNS", "BIND9", "IPSec VPN"] },
@@ -353,7 +353,7 @@ const Projects = () => {
     { name: "Data Science", tags: ["Time Series", "Forecasting", "ARIMA", "SARIMA", "XGBoost", "Edge AI"] },
     { name: "Signal Processing", tags: ["Digital Signal Processing", "FFT", "DWT", "Audio Fingerprinting", "Synchronization"] },
     { name: "Mobile Development", tags: ["Android App"] },
-  ];
+  ], []);
   
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [filteredProjects, setFilteredProjects] = useState(projects);
@@ -372,15 +372,7 @@ const Projects = () => {
       });
       setFilteredProjects(filtered);
     }
-  }, [selectedFilters]);
-
-  const getAllUniqueTags = () => {
-    const uniqueTags = new Set();
-    projects.forEach(project => {
-      project.tech.forEach(tech => uniqueTags.add(tech));
-    });
-    return Array.from(uniqueTags).sort();
-  };
+  }, [selectedFilters, categories, projects]);
 
   const toggleFilter = (tag) => {
     if (selectedFilters.includes(tag)) {

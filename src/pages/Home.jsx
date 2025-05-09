@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -161,45 +161,46 @@ const CTAButton = styled(Link)`
 `;
 
 const Home = () => {
-  const [displayText, setDisplayText] = useState('');
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+  const [displayedTitle, setDisplayedTitle] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  const [loopNum, setLoopNum] = useState(0);
-  const [typingSpeed, setTypingSpeed] = useState(120);
-  
-  const titles = [
-    "Embedded Systems Engineer",
-    "IoT Specialist",
-    "Software Developer"
-  ];
+  const [typingSpeed, setTypingSpeed] = useState(100);
+  const titles = useMemo(() => [
+    'Embedded Systems Engineer',
+    'IoT Developer',
+    'Full Stack Developer',
+    'Cloud Enthusiast',
+    'Machine Learning Explorer',
+  ], []);
 
   useEffect(() => {
     const handleTyping = () => {
-      const current = loopNum % titles.length;
+      const current = currentTitleIndex % titles.length;
       const fullText = titles[current];
 
-      setDisplayText(isDeleting 
-        ? fullText.substring(0, displayText.length - 1) 
-        : fullText.substring(0, displayText.length + 1)
+      setDisplayedTitle(isDeleting 
+        ? fullText.substring(0, displayedTitle.length - 1) 
+        : fullText.substring(0, displayedTitle.length + 1)
       );
 
       // Set typing speed
       setTypingSpeed(isDeleting ? 60 : 120);
 
       // If finished typing
-      if (!isDeleting && displayText === fullText) {
+      if (!isDeleting && displayedTitle === fullText) {
         setTimeout(() => setIsDeleting(true), 1000);
       } 
       // If finished deleting
-      else if (isDeleting && displayText === '') {
+      else if (isDeleting && displayedTitle === '') {
         setIsDeleting(false);
-        setLoopNum(loopNum + 1);
+        setCurrentTitleIndex(currentTitleIndex + 1);
         setTypingSpeed(300);
       }
     };
 
     const timer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(timer);
-  }, [displayText, isDeleting, loopNum, titles, typingSpeed]);
+  }, [displayedTitle, isDeleting, currentTitleIndex, titles, typingSpeed]);
 
   return (
     <HomeContainer>
@@ -207,7 +208,7 @@ const Home = () => {
         <Title>Hi, I'm Gautam Bidari</Title>
         <TypedContainer>
           <TypedTextWrapper>
-            <TypedText>{displayText}</TypedText>
+            <TypedText>{displayedTitle}</TypedText>
             <Cursor />
           </TypedTextWrapper>
         </TypedContainer>
