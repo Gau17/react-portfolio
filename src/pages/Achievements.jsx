@@ -176,19 +176,23 @@ const ViewCertificationButton = styled.a`
 `;
 
 const AchievementImage = styled.div`
-  height: 200px;
+  height: 250px;
+  min-width: 100%;
+  min-height: 100%;
   background-color: #252525;
   background-image: ${({ bg }) => (bg ? `url(${bg})` : 'none')};
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   position: relative;
+  overflow: hidden;
   &::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 40px;
+    height: 60px;
     background: linear-gradient(to top, #1e1e1e, transparent);
   }
 `;
@@ -264,6 +268,44 @@ const Achievements = () => {
   const awards = [
     {
       id: 1,
+      title: "Laurel and Scroll 100 Honor Society Award",
+      organization: "Northeastern University",
+      date: "May 2025",
+      description: "Inducted into the Laurel and Scroll 100 Honor Society for outstanding academic achievement and leadership in extracurricular activities.",
+      icon: <FaAward />,
+      color: "linear-gradient(135deg, #8e44ad, #2980b9)",
+      images: [
+        `${process.env.PUBLIC_URL}/images/projects/laurel-and-scroll-1.jpg`,
+        `${process.env.PUBLIC_URL}/images/projects/laurel-and-scroll-2.jpg`
+      ],
+    },
+    {
+      id: 2,
+      title: "Cyber-Physical Systems Department Award",
+      organization: "Northeastern University",
+      date: "May 2025",
+      description: "Received the Department Award for exceptional contributions to research and innovation in Cyber-Physical Systems.",
+      icon: <FaTrophy />,
+      color: "linear-gradient(135deg, #00b894, #00cec9)",
+      images: [
+        `${process.env.PUBLIC_URL}/images/projects/cyps-award-1.jpg`,
+        `${process.env.PUBLIC_URL}/images/projects/cyps-award-2.jpeg`
+      ],
+    },
+    {
+      id: 3,
+      title: "MITRE E-CTF Top 18",
+      organization: "MITRE Corporation",
+      date: "April 2025",
+      description: "Ranked 18 globally out of 120+ teams in the MITRE Embedded Capture-The-Flag competition, designing a secure satellite communication system with hardware security features.",
+      icon: <FaAward />,
+      color: "linear-gradient(135deg, #8e44ad, #2980b9)",
+      images: [
+        `${process.env.PUBLIC_URL}/images/projects/ectf-logo.png`,
+      ],
+    },
+    {
+      id: 4,
       title: "Winner - Silicon Labs Matter Developer Challenge",
       organization: "Silicon Labs",
       date: "October 2024",
@@ -271,25 +313,12 @@ const Achievements = () => {
       icon: <FaTrophy />,
       color: "linear-gradient(135deg, #FFD700, #FFA500)",
       images: [
-        `${process.env.PUBLIC_URL}/images/projects/matter-challenge.png`,
-        `${process.env.PUBLIC_URL}/images/projects/data-center.avif`
+        `${process.env.PUBLIC_URL}/images/projects/matter-challenge-2.png`,
+        `${process.env.PUBLIC_URL}/images/projects/matter-challenge-winners.png`
       ],
     },
     {
-      id: 2,
-      title: "MITRE E-CTF Top 18",
-      organization: "MITRE Corporation",
-      date: "April 2025",
-      description: "Ranked 18 globally out of 120+ teams in the MITRE Embedded Capture-The-Flag competition, designing a secure satellite communication system with hardware security features.",
-      icon: <FaAward />,
-      color: "linear-gradient(135deg, #C0C0C0, #A9A9A9)",
-      images: [
-        `${process.env.PUBLIC_URL}/images/projects/ectf.jpg`,
-        `${process.env.PUBLIC_URL}/images/projects/audio-waves.jpg`
-      ],
-    },
-    {
-      id: 3,
+      id: 5,
       title: "Deloitte Applause Award",
       organization: "Deloitte Consulting",
       date: "February 2023",
@@ -297,9 +326,12 @@ const Achievements = () => {
       icon: <FaMedal />,
       color: "linear-gradient(135deg, #0076CE, #00218A)",
       images: [
-        `${process.env.PUBLIC_URL}/images/projects/network-design.jpg`
+      `${process.env.PUBLIC_URL}/images/projects/deloitte-applause-award.png`,
+      `${process.env.PUBLIC_URL}/images/projects/Deloitte-emblem.png`,
+        
       ],
-    }
+    },
+
   ];
 
   // Certifications data
@@ -307,15 +339,15 @@ const Achievements = () => {
     {
       id: 1,
       title: "GCP Associate Cloud Engineer",
-      organization: "Google",
+      organization: "Google Cloud Platform (GCP)",
       date: "September 2023",
       description: "",
       icon: <FaCertificate />,
       link: "",
       color: "linear-gradient(135deg, #0078D4, #0050A0)",
       images: [
-        `${process.env.PUBLIC_URL}/images/projects/cisco-network.jpg`,
-        `${process.env.PUBLIC_URL}/images/projects/smart-mask.jpg`
+        `${process.env.PUBLIC_URL}/images/projects/gcp-certification.png`,
+        `${process.env.PUBLIC_URL}/images/projects/gcp.jpg`
       ],
     }
   ];
@@ -324,15 +356,15 @@ const Achievements = () => {
   const getCarouselSettings = (images) => ({
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: images.length > 1,
     adaptiveHeight: true,
     nextArrow: <NextArrow show={images.length > 1} />,
     prevArrow: <PrevArrow show={images.length > 1} />,
-    autoplay: true,
-    autoplaySpeed: 2000,
+    autoplay: false,
+    autoplaySpeed: 3000,
   });
 
   return (
