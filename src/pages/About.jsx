@@ -478,6 +478,18 @@ const About = () => {
   const experiences = [
     {
       id: 1,
+      title: "Research Assistant - Cyberspace security and forensics lab (Cacti Lab)",
+      company: "Northeastern University, Boston, MA",
+      date: "May 2025 - August 2025",
+      points: [
+        "Researching ARM Cortex-M based voltage glitching attacks using ChipWhisperer Husky",
+        "Exploring how GCC compiler optimization can introduce new glitching attack vectors",
+        "Developing an automated value-set analysis based power glitching script for Ghidra"
+      ],
+      icon: <FaMicrochip/>
+    },
+    {
+      id: 2,
       title: "Teaching Assistant - ML for IoT Systems (TELE 6500)",
       company: "Northeastern University, Boston, MA",
       date: "January 2025 - April 2025",
@@ -488,7 +500,7 @@ const About = () => {
       icon: <FaBriefcase />
     },
     {
-      id: 2,
+      id: 3,
       title: "Embedded Software Engineering Intern",
       company: "Woods Hole Oceanographic Institute (WHOI), Woods Hole, MA",
       date: "June 2024 - December 2024",
@@ -505,7 +517,7 @@ const About = () => {
       icon: <FaMicrochip />
     },
     {
-      id: 3,
+      id: 4,
       title: "Teaching Assistant - Data Networking (TELE 5330)",
       company: "Northeastern University, Boston, MA",
       date: "January 2024 - April 2024",
@@ -516,7 +528,7 @@ const About = () => {
       icon: <FaLaptopCode />
     },
     {
-      id: 4,
+      id: 5,
       title: "Java Backend Developer",
       company: "Deloitte Consulting, India",
       date: "June 2022 - August 2023",
@@ -528,7 +540,7 @@ const About = () => {
       icon: <FaServer />
     },
     {
-      id: 5,
+      id: 6,
       title: "Embedded Software Engineering Intern",
       company: "Millennium Semiconductors, India",
       date: "June 2021 - August 2021",
